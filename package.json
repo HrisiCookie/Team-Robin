@@ -1,0 +1,30 @@
+{
+  "name": "books",
+  "version": "1.0.0",
+  "description": "##  Login form * Register users * Login users * Log out users * Each user has:   * Username, Password",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha -R spec tests --compilers js:babel/register",
+    "postinstall": "node ./node_modules/bower/bin/bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeriCookie/Books.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeriCookie/Books/issues"
+  },
+  "homepage": "https://github.com/GeriCookie/Books#readme",
+  "dependencies": {
+    "babel-core": "^5.8.23",
+    "body-parser": "^1.13.3",
+    "bower": "^1.5.2",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "http-server": "^0.8.0",
+    "mongoose": "^4.1.3"
+  }
+}
