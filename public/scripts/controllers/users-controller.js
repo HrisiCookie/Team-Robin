@@ -3,10 +3,10 @@ import { data } from '../data.js';
 
 let usersController = (function () {
 
-    function login() {
+    function login(context) {
         templates.get('login')
             .then((template) => {
-                $('body').html(template()); // find another way to do it
+               context.$element().html(template()); 
 
                 $('#btn-register').on('click', () => {
                     let user = {

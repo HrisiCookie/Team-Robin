@@ -1,10 +1,10 @@
 import { templates } from '../templates.js';
 let homeController = (function () {
 
-    function all(){
+    function all(context){
        templates.get('home')
         .then((template)=>{
-            $('body').html(template()); // must find another way to do it
+            context.$element().html(template()); 
         });
     }
 

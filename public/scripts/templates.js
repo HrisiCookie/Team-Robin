@@ -1,6 +1,6 @@
-let templates = (function () {
+import * as handlebars from '../node_modules/handlebars/dist/handlebars.js';
 
-    let handlebars = window.handlebars || window.Handlebars;
+let templates = (function () {
 
     function get(name) {
         let url = `./templates/${name}.handlebars`;

@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.0.5",
-    "navigo": "^2.3.4",
     "systemjs": "^0.19.38",
     "systemjs-plugin-babel": "0.0.15"
   }

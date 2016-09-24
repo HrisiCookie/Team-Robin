@@ -1,7 +1,8 @@
 import { Requester } from './requester.js';
+import { createReqData } from './helpers/dataHelper.js';
 
 let data = (function () {
-
+    
     function register(user) {
         let promise = new Promise((resolve, reject) => {
             let url = 'api/users';
@@ -34,16 +35,7 @@ let data = (function () {
         return promise;
     }
 
-    function createReqData(user) {
-        let options = {
-            data: {
-                username: user.username,
-                passHash: CryptoJS.SHA1($(user.password).val()).toString()
-            }
-        };
-
-        return options;
-    }
+    
 
     return {
         users: {
