@@ -8,6 +8,15 @@ function loadRawTemplate(selector, templateName) {
         });
 }
 
+function loadCompiledTemplate(selector, data, templateName) {
+    let selectedItem = $(selector);
+    return templater.get(templateName)
+        .then((template) => {
+            console.log(template(data));
+            selectedItem.html(template(data));
+        });
+}
+
 class PageView {
 
     homePage(selector) {
@@ -21,6 +30,12 @@ class PageView {
     registerPage(selector) {
         return loadRawTemplate(selector, 'register');
     }
+
+    booksPage(selector, books) {
+        let data = { books}
+        return loadCompiledTemplate(selector, data, 'all-books');
+    }
+
 }
 
 let pageView = new PageView();

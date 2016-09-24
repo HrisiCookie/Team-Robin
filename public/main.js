@@ -1,12 +1,14 @@
 import { homeController } from './scripts/controllers/home-controller.js';
 import { usersController } from './scripts/controllers/users-controller.js';
+import { booksController } from './scripts/controllers/books-controller.js';
+
 
 (function () {
     let sammyApp = Sammy('#content', function () {
 
         this.get('#/', function () {
             this.redirect('#/home');
-        });
+        }); 
 
         this.get('#/home', (context)=>{
             homeController.all(context, '#content');
@@ -22,7 +24,7 @@ import { usersController } from './scripts/controllers/users-controller.js';
 
         this.get('#/logout', usersController.logout);
         
-        // this.get('#/books', booksController.all);
+        this.get('#/books', booksController.all);
 
     });
 

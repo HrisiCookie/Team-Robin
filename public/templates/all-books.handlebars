@@ -1,0 +1,18 @@
+<h1>Books Page</h1>
+<div class="table-responsive">
+    <table class="table">
+        {{#books}}
+        <tr class="row">
+            <td class="col-md-3">
+                <img src="{{coverUrl}}">
+            </td>
+            <td class="col-md-3">
+                Ttitle: <a href="#/api/books/{{_id}}">{{title}}</a>
+            </td class="col-md-3">
+            <td>Rating: {{rating}}</td>
+        </tr>
+        {{/books}}
+    </table>  
+</div>
+
+{{!-- paging --}}
