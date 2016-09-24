@@ -2,15 +2,30 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>myBooks</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./bower_components/toastr/toastr.css" rel="stylesheet">
     
 </head>
 <body>
+    <div id="root" class="container">
+        <header class="">
+            <h1 class="page-header"><a href="#/home">myBooks</a></h1>
+            <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav col-md-9">
+                    <li><a href="#/home">Home</a></li>
+                    <li><a href="#/books">Books</a></li>                    
+                    <li><a href="#/genres">Genres</a></li>
+                </ul>
+                <a href="#/login" class="btn btn-primary">Sign In</a>
+                <a href="#/register" class="btn btn-success">Sign Up</a>
+                
+            </nav>
+        </header>
     <div id="content"></div>
+        
+    </div>
 
 
     <!-- Libs -->
