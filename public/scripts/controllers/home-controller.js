@@ -1,14 +1,11 @@
-import { templates } from '../templates.js';
-let homeController = (function () {
+import { pageView } from '../view/page-view.js';
 
-    function all(context){
-       templates.get('home')
-        .then((template)=>{
-            context.$element().html(template()); 
-        });
+class HomeController {
+
+    all(context, selector) {
+        return pageView.homePage(selector);
     }
+}
 
-    return { all };
-})();
-
-export { homeController }
+let homeController = new HomeController();
+export { homeController };

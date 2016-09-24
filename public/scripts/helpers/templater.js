@@ -1,8 +1,7 @@
-import * as handlebars from '../node_modules/handlebars/dist/handlebars.js';
+import * as handlebars from '../../node_modules/handlebars/dist/handlebars.js';
 
-let templates = (function () {
-
-    function get(name) {
+class Templater{
+     get(name) {
         let url = `./templates/${name}.handlebars`;
         var promise = new Promise((resolve, reject) => {
             $.get(url, (html) => {
@@ -14,7 +13,7 @@ let templates = (function () {
         return promise;
     }
 
-    return { get };
-})();
+}
 
-export { templates };
+let templater = new Templater();
+export { templater };

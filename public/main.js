@@ -7,9 +7,22 @@ import { usersController } from './scripts/controllers/users-controller.js';
         this.get('#/', function () {
             this.redirect('#/home');
         });
-        this.get('#/home', homeController.all);
-        this.get('#/login', usersController.login);
-        this.get('#/register', usersController.register);
+
+        this.get('#/home', (context)=>{
+            homeController.all(context, '#content');
+        });
+
+        this.get('#/login', (context)=>{
+            usersController.login(context, '#content');
+        });
+
+        this.get('#/register', (context)=>{
+            usersController.register(context, '#content');
+        });
+
+        this.get('#/logout', usersController.logout);
+        
+        // this.get('#/books', booksController.all);
 
     });
 

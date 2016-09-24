@@ -1,23 +1,23 @@
-import { templates } from '../templates.js';
-import { data } from '../data.js';
+import { templater } from '../helpers/templater.js';
+import { userModel } from '../models/user-model.js';
+import { pageView } from '../view/page-view.js';
 import { notificator } from '../helpers/notificator.js';
 
-let usersController = (function () {
 
-    function login(context) {
-        templates.get('login')
-            .then((template) => {
-                context.$element().html(template());
+class UserController {
 
+    login(context, selector) {
+        pageView.loginPage(selector)
+            .then(() => {
                 $('#btn-login').on('click', () => {
                     let user = {
                         username: $('#tb-username').val(),
                         password: $('#tb-password').val()
                     };
-                    data.users.login(user)
-                        .then(() => {
-                            notificator.success('User loged in');
-                            console.log('User loged in');
+                    userModel.login(user)
+                        .then((res) => {
+                            notificator.success(`${res.username} signed in!`);
+                            context.redirect('#/home');
                         },
                         function (err) {
                             console.log(err);
@@ -26,36 +26,24 @@ let usersController = (function () {
             });
     }
 
-    function register(context) {
-        templates.get('register')
-            .then((template) => {
-                context.$element().html(template());
-
-                let passMatch = false;
-
-                $('#tb-password-confirm').on('change', function () {
-                    let pass = $('#tb-password').val();
-                    let passConfirm = $(this).val();
-                    if (pass === passConfirm) {
-                        passMatch = true;
-                        notificator.success('Y');                         
-                    }
-                    else {
-                        passMatch = false;
-                    }
-                });
-
+    register(context, selector) {
+        pageView.registerPage(selector)
+            .then(() => {
+                
                 $('#btn-register').on('click', () => {
-                    if (passMatch) {
+                    let pass = $('#tb-password').val();
+                    let passConfirm = $('#tb-password-confirm').val();
+                    if (pass === passConfirm) {
                         let user = {
                             username: $('#tb-username').val(),
                             password: $('#tb-password').val()
                         };
-                        data.users.register(user)
+                        userModel.register(user)
                             .then((res) => {
                                 notificator.success('Registered Successfully');
-                                console.log('Registered User');
                                 context.redirect('#/login');
+                            }, (err) => {
+                                notificator.error(JSON.parse(err).err);
                             },
                             function (err) {
                                 console.log(err);
@@ -69,10 +57,16 @@ let usersController = (function () {
             });
     }
 
-    return {
-        login,
-        register
-    };
-})();
+    logout(context) {
+        userModel.logout()
+            .then(() => {
+                notificator.success('User signed out');
+                context.redirect('#/home');
+            });
+    }
 
+
+}
+
+let usersController = new UserController();
 export { usersController };
