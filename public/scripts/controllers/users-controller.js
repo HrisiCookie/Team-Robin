@@ -1,5 +1,6 @@
 import { templates } from '../templates.js';
 import { data } from '../data.js';
+import { notificator } from '../helpers/notificator.js';
 
 let usersController = (function () {
 
@@ -15,6 +16,7 @@ let usersController = (function () {
                     };
                     data.users.login(user)
                         .then(() => {
+                            notificator.success('User loged in');
                             console.log('User loged in');
                         },
                         function (err) {
@@ -36,6 +38,7 @@ let usersController = (function () {
                     let passConfirm = $(this).val();
                     if (pass === passConfirm) {
                         passMatch = true;
+                        notificator.success('Y');                         
                     }
                     else {
                         passMatch = false;
@@ -49,14 +52,17 @@ let usersController = (function () {
                             password: $('#tb-password').val()
                         };
                         data.users.register(user)
-                            .then(() => {
+                            .then((res) => {
+                                notificator.success('Registered Successfully');
                                 console.log('Registered User');
+                                context.redirect('#/login');
                             },
                             function (err) {
                                 console.log(err);
                             });
                     }
                     else {
+                        notificator.error('Passwords dont match');
                         console.log('Passwords dont match');
                     }
                 });
