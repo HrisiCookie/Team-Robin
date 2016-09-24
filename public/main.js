@@ -6,6 +6,7 @@ import { usersController } from './scripts/controllers/users-controller.js';
 
         this.get('#/', homeController.all);
         this.get('#/login', usersController.login);
+        this.get('#/register', usersController.register);
         
     });
 
