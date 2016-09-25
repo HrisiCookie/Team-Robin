@@ -12,7 +12,6 @@ function loadCompiledTemplate(selector, data, templateName) {
     let selectedItem = $(selector);
     return templater.get(templateName)
         .then((template) => {
-            console.log(template(data));
             selectedItem.html(template(data));
         });
 }
@@ -39,6 +38,11 @@ class PageView {
     profilePage(selector){
         let data = { username: localStorage.getItem('STORAGE_USERNAME') };
         return loadCompiledTemplate(selector, data, 'profile');
+    }
+
+    newsfeed(selector, news){
+        let data = { news };
+        return loadCompiledTemplate(selector, data, 'newsfeed');
     }
 
 }

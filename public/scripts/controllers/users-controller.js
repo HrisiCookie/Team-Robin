@@ -66,11 +66,9 @@ class UserController {
 
     profile(context, selector){
         pageView.profilePage(selector)
-            .then(()=>{
-                userModel.newsfeed()
-                    .then((res)=>{
-                        console.log(res);
-                    });
+            .then(userModel.newsfeed)
+            .then((res)=>{
+                pageView.newsfeed('#newsfeed', res);
             });
     }
 

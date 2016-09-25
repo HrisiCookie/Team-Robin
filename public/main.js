@@ -29,12 +29,8 @@ import { booksController } from './scripts/controllers/books-controller.js';
         });
 
         this.get('#/profile', (context)=>{
-            
-            console.log(usersController.profile(context, '#content'));
+            usersController.profile(context, '#content');
         });
-
-
-
     });
 
     $(function () {
