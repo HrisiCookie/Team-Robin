@@ -17,10 +17,10 @@ class UserController {
                     userModel.login(user)
                         .then((res) => {
                             notificator.success(`${res.username} signed in!`);
-                            context.redirect('#/home');
+                            context.redirect('#/profile');
                         },
                         function (err) {
-                            console.log(err);
+                            notificator.error('Invalid username or password');
                         });
                 });
             });
@@ -29,7 +29,6 @@ class UserController {
     register(context, selector) {
         pageView.registerPage(selector)
             .then(() => {
-                
                 $('#btn-register').on('click', () => {
                     let pass = $('#tb-password').val();
                     let passConfirm = $('#tb-password-confirm').val();
@@ -62,6 +61,16 @@ class UserController {
             .then(() => {
                 notificator.success('User signed out');
                 context.redirect('#/home');
+            });
+    }
+
+    profile(context, selector){
+        pageView.profilePage(selector)
+            .then(()=>{
+                userModel.newsfeed()
+                    .then((res)=>{
+                        console.log(res);
+                    });
             });
     }
 

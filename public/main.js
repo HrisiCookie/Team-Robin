@@ -24,7 +24,16 @@ import { booksController } from './scripts/controllers/books-controller.js';
 
         this.get('#/logout', usersController.logout);
         
-        this.get('#/books', booksController.all);
+        this.get('#/books', (context) =>{
+            booksController.all(context, '#content');
+        });
+
+        this.get('#/profile', (context)=>{
+            
+            console.log(usersController.profile(context, '#content'));
+        });
+
+
 
     });
 

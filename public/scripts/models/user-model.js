@@ -2,6 +2,7 @@ import { requester } from '../helpers/requester.js';
 import * as CryptoJS from '../../bower_components/crypto-js/crypto-js.js';
 
 const STORAGE_AUTH_KEY = 'STORAGE_AUTHENTICATION_KEY';
+const STORAGE_USERNAME = 'STORAGE_USERNAME';
 
 function createRequestOptions(user) {
     let options = {
@@ -39,6 +40,7 @@ class UserModel {
             requester.put(url, options)
                 .then(function (res) {
                     localStorage.setItem(STORAGE_AUTH_KEY, res.authKey);
+                    localStorage.setItem(STORAGE_USERNAME, res.username);
                     resolve(res);
                 }, function (err) {
                     reject(err);
@@ -50,8 +52,22 @@ class UserModel {
 
     logout() {
         let promise = new Promise((resolve, reject) => {
-                localStorage.removeItem(STORAGE_AUTH_KEY);
-                resolve();
+            localStorage.removeItem(STORAGE_AUTH_KEY);
+            resolve();
+        });
+
+        return promise;
+    }
+
+    newsfeed() {
+        let promise = new Promise((resolve, reject)=>{
+            let url = 'api/updates';
+            requester.get(url)
+                .then((res)=>{
+                    resolve(res);
+                }, (err)=>{
+                    reject(err);
+                });
         });
 
         return promise;

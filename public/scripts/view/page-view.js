@@ -32,8 +32,13 @@ class PageView {
     }
 
     booksPage(selector, books) {
-        let data = { books}
+        let data = { books};
         return loadCompiledTemplate(selector, data, 'all-books');
+    }
+
+    profilePage(selector){
+        let data = { username: localStorage.getItem('STORAGE_USERNAME') };
+        return loadCompiledTemplate(selector, data, 'profile');
     }
 
 }

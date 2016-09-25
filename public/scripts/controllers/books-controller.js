@@ -2,10 +2,10 @@ import { booksModel } from '../models/books-model.js';
 import { pageView } from '../view/page-view.js';
 
 class BooksController {
-    all(context){
+    all(context, selector){
         booksModel.getAll(context.params)
             .then((res)=>{
-                pageView.booksPage('#content', res);
+                pageView.booksPage(selector, res);
             }, (err)=>{
                 console.log(err);
             });
