@@ -1,15 +1,26 @@
 {{#news}}
 <div class="new-wrapper">
-<h3>{{user}}:</h3>
-<h4 data-id={{_id}}>{{text}}</h4> <button class="like">Like it!</button>
-<p>{{date}}  <strong>{{#if likes}}Likes:{{likes}}{{else}}Likes: 0{{/if}}</strong></p> 
-{{#if commments}}
-<p>Comments:<p>
-{{#comments}}
-<p>{{text}}</p>
-{{/comments}}
-{{else}}
-<p>No comments yet!</p>
-{{/if}}
+    <h3>{{user}}:</h3>
+    <h4 class="new-text" data-id={{_id}}>{{text}}</h4> <button class="like">Like it!</button>
+    <p>
+        {{date}}
+        <strong>
+            {{#if likes}}Likes:{{likes}}{{else}}Likes: 0{{/if}}
+        </strong>
+    </p> 
+    {{#if commments}}
+    <p>Comments:<p>
+    {{#comments}}
+    <p>{{text}}</p>
+    {{/comments}}
+    {{else}}
+    <p>No comments yet!</p>
+    {{/if}}
+    <form class="form-inline">
+        <div class="form-group col-md-12">
+            <input placeholder="Something to say" type="text" class="form-control">
+            <button class="form-control">Add</button>  
+        </div>
+    </form>
 </div>
 {{/news}}

@@ -64,11 +64,24 @@ class UserController {
             });
     }
 
-    profile(context, selector){
+    profile(context, selector) {
         pageView.profilePage(selector)
             .then(userModel.newsfeed)
-            .then((res)=>{
+            .then((res) => {
                 pageView.newsfeed('#newsfeed', res);
+            })
+            .then(() => {
+                $('#newsfeed').on('click', '.like', function(){
+                    let id = $(this).parents('.new-wrapper')
+                        .find('.new-text')
+                        .attr('data-id');
+                    userModel.like(id)
+                        .then((res)=>{
+                            console.log(res);
+                        }, (err)=>{
+                            console.log(err);
+                        });
+                });
             });
     }
 

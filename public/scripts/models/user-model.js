@@ -60,9 +60,25 @@ class UserModel {
     }
 
     newsfeed() {
-        let promise = new Promise((resolve, reject)=>{
+        let promise = new Promise((resolve, reject) => {
             let url = 'api/updates';
             requester.get(url)
+                .then((res) => {
+                    resolve(res);
+                }, (err) => {
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
+
+    like(id) {
+        let promise = new Promise((resolve, reject) => {
+            let url = `api/updates/${id}`;
+            let headers = { 'x-auth-key': localStorage.getItem(STORAGE_AUTH_KEY) };
+            let options = { headers };
+            requester.put(url, options)
                 .then((res)=>{
                     resolve(res);
                 }, (err)=>{
