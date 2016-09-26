@@ -8,14 +8,12 @@
             {{#if likes}}Likes:{{likes}}{{else}}Likes: 0{{/if}}
         </strong>
     </p> 
-    {{#if commments}}
     <p>Comments:<p>
-    {{#comments}}
-    <p>{{text}}</p>
-    {{/comments}}
-    {{else}}
-    <p>No comments yet!</p>
-    {{/if}}
+    <ul>
+        {{#comments}}
+        <li>{{comment}}</li>
+        {{/comments}}
+    </ul>
     <form class="form-inline">
         <div class="form-group col-md-12">
             <input placeholder="Something to say" type="text" class="form-control tb-comment">

@@ -12,6 +12,7 @@ function loadCompiledTemplate(selector, data, templateName) {
     let selectedItem = $(selector);
     return templater.get(templateName)
         .then((template) => {
+            console.log(data);
             selectedItem.html(template(data));
         });
 }
@@ -43,6 +44,10 @@ class PageView {
     newsfeed(selector, news){
         let data = { news };
         return loadCompiledTemplate(selector, data, 'newsfeed');
+    }
+
+    addBookPage(selector){
+        return loadRawTemplate(selector, 'add-book-page');
     }
 
 }

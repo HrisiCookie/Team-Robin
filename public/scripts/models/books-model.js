@@ -18,6 +18,26 @@ class BooksModel {
 
         return promise;
     }
+
+    addBook(bookToAdd) {
+        let promise = new Promise((resolve, reject) => {
+            let url = 'api/books';
+            let headers = { 'x-auth-key': localStorage.getItem('STORAGE_AUTHENTICATION_KEY') };
+            let options = {
+                headers, 
+                data: bookToAdd 
+            };
+
+            requester.post(url, options)
+                .then((res)=>{
+                    resolve(res);
+                }, (err)=>{
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
 }
 
 let booksModel = new BooksModel();

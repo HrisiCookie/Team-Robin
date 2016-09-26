@@ -31,6 +31,10 @@ import { booksController } from './scripts/controllers/books-controller.js';
         this.get('#/profile', (context)=>{
             usersController.profile(context, '#content');
         });
+
+        this.get('#/add-book', (context)=>{
+            booksController.addBook(context, '#content');
+        });
     });
 
     $(function () {
