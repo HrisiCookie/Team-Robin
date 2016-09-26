@@ -1,0 +1,37 @@
+<div id="book-wrapper">
+    <h1 data-id={{_id}}>{{title}}</h1>
+    <table class="table">
+        <tr>
+            <td col-md-6>
+                <img class="img-responsive" src="{{coverUrl}}">
+            </td>
+            <td col-md-6>
+                <p>Summary: {{Description}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Author: <strong>{{author}}</strong></h4>
+                <h4>Rating: <strong>{{rating}}</strong></h4>
+                <p>Pages: <strong>{{pages}}</strong></p>
+            </td>
+            <td>
+                Genres:
+                {{#genres}}
+                <a class="btn btn-default" href="">{{this}}</a>
+                {{/genres}}
+            </td>
+        </tr>
+    </table>
+    <h3>Reviews:</h3>
+    {{#reviews}}
+    <div class="review-wrapper">
+    <p><strong>{{this.review}}</strong></p>
+    <a href="">{{this.userId}}</a>(userId)
+    </div>
+    {{/reviews}}
+    <div class="form-group">
+        <textarea type="text" placeholder="Write review about it..." class="form-control"></textarea>
+        <button class="form-control btn btn-primary">Add review</button>
+    </div>
+</div>

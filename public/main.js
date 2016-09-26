@@ -35,6 +35,10 @@ import { booksController } from './scripts/controllers/books-controller.js';
         this.get('#/add-book', (context)=>{
             booksController.addBook(context, '#content');
         });
+
+        this.get('#/books/:id', (context)=>{
+            booksController.singleBook(context, '#content');
+        });
     });
 
     $(function () {

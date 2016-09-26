@@ -49,7 +49,13 @@ class BooksController {
                         });
                 });
             });
+    }
 
+    singleBook(context, selector) {
+        booksModel.getSingleBookInfo(context.params)
+            .then((res)=>{
+                return pageView.singleBookPage(selector, res);
+            });
     }
 }
 

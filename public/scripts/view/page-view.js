@@ -50,6 +50,10 @@ class PageView {
         return loadRawTemplate(selector, 'add-book-page');
     }
 
+    singleBookPage(selector, book){
+        return loadCompiledTemplate(selector, book, 'single-book');
+    }
+
 }
 
 let pageView = new PageView();
