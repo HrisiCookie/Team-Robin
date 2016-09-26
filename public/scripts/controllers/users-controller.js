@@ -71,17 +71,36 @@ class UserController {
                 pageView.newsfeed('#newsfeed', res);
             })
             .then(() => {
-                $('#newsfeed').on('click', '.like', function(){
-                    let id = $(this).parents('.new-wrapper')
-                        .find('.new-text')
-                        .attr('data-id');
-                    userModel.like(id)
-                        .then((res)=>{
-                            console.log(res);
-                        }, (err)=>{
-                            console.log(err);
-                        });
-                });
+                // $('#newsfeed').on('click', '.like', function(){
+                //     let newsId = $(this).parents('.new-wrapper')
+                //         .attr('data-id');
+                //     userModel.like(newsId)
+                //         .then((res)=>{
+                //             console.log(res);
+                //         }, (err)=>{
+                //             console.log(err);
+                //         });
+                // });   
+                // Cause Server Error update.likes.push is nof a function
+
+                // $('#newsfeed').on('click', '.btn-add-comment', function () {
+                //     let $this = $(this);
+                //     let comment = $this
+                //         .prev()
+                //         .val();
+
+                //     let newsId = $this
+                //         .parents('.new-wrapper')
+                //         .attr('data-id');
+
+                //     userModel.comment(comment, newsId)
+                //         .then((res)=>{
+                //             console.log(res);
+                //         }, (err)=>{
+                //             console.log(err);
+                //         });
+                // });
+                //Works only with old updates
             });
     }
 

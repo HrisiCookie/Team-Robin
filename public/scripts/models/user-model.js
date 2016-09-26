@@ -73,15 +73,37 @@ class UserModel {
         return promise;
     }
 
-    like(id) {
+    like(newsId) {
         let promise = new Promise((resolve, reject) => {
-            let url = `api/updates/${id}`;
+            let url = `api/updates/${newsId}`;
             let headers = { 'x-auth-key': localStorage.getItem(STORAGE_AUTH_KEY) };
             let options = { headers };
             requester.put(url, options)
-                .then((res)=>{
+                .then((res) => {
                     resolve(res);
-                }, (err)=>{
+                }, (err) => {
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
+
+    comment(comment, newsId) {
+        let promise = new Promise((resolve, reject) => {
+            let url = `api/updates/${newsId}/comment`;
+            let headers = { 'x-auth-key': localStorage.getItem(STORAGE_AUTH_KEY) };
+            let options = {
+                headers,
+                data: {
+                    comment
+                }
+            };
+
+            requester.put(url, options)
+                .then((res) => {
+                    resolve(res);
+                }, (err) => {
                     reject(err);
                 });
         });

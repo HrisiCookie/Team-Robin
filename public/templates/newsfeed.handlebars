@@ -1,7 +1,7 @@
 {{#news}}
-<div class="new-wrapper">
+<div data-id={{_id}} class="new-wrapper">
     <h3>{{user}}:</h3>
-    <h4 class="new-text" data-id={{_id}}>{{text}}</h4> <button class="like">Like it!</button>
+    <h4 class="new-text" >{{text}}</h4> <button class="like">Like it!</button>
     <p>
         {{date}}
         <strong>
@@ -18,8 +18,8 @@
     {{/if}}
     <form class="form-inline">
         <div class="form-group col-md-12">
-            <input placeholder="Something to say" type="text" class="form-control">
-            <button class="form-control">Add</button>  
+            <input placeholder="Something to say" type="text" class="form-control tb-comment">
+            <button class="form-control btn-add-comment">Add</button>  
         </div>
     </form>
 </div>
