@@ -2,6 +2,8 @@ import { booksModel } from '../models/books-model.js';
 import { pageView } from '../view/page-view.js';
 import { notificator } from '../helpers/notificator.js';
 
+const DEFAULT_BOOK_COVER_URL = 'http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg';
+
 class BooksController {
     all(context, selector) {
         booksModel.getAll(context.params)
@@ -20,7 +22,7 @@ class BooksController {
                     let author = $('#tb-author').val();
                     let description = $('#tb-description').val();
                     let pages = $('#tb-pages').val();
-                    let coverUrl = $('#tb-cover').val();
+                    let coverUrl = $('#tb-cover').val() || DEFAULT_BOOK_COVER_URL;
                     let genres = $('#tb-genres').val()
                         .split(', ');
                     let bookToAdd = {
