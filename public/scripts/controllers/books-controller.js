@@ -52,9 +52,30 @@ class BooksController {
     }
 
     singleBook(context, selector) {
-        booksModel.getSingleBookInfo(context.params)
+        booksModel.getSingleBookInfo(context.params.id)
             .then((res)=>{
                 return pageView.singleBookPage(selector, res);
+            })
+            .then(()=>{
+                $('#btn-add-rating').on('click', function(){
+                    let tbRating = $(this).prev();
+                    let rating = +tbRating.val();
+                    if((typeof rating !== 'number') || rating < 1 || rating > 5){
+                        notificator.error('Invalid Rating');
+                    }
+                    else{
+                        let bookId = $(this).attr('data-id');
+                        booksModel.sendRating(bookId, rating)
+                            .then((res)=>{
+                                notificator.success('Rating added successfully');
+                                $('#rating').html(rating);
+                            }, (err)=>{
+                                notificator.error(err.responseText);
+                            });
+                    }
+
+                    tbRating.val('');
+                });
             });
     }
 }
