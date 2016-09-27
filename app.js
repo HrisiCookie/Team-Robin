@@ -87,7 +87,7 @@ app.get('/api/genres', function(req, res) {
 });
 
 app.listen(port, function() {
-    console.log('Running on PORT: ' + port);
+    console.log(`Server is running at http://localhost:${port}`);
 });
 
 module.exports = app;
