@@ -8,6 +8,13 @@ class BooksController {
     all(context, selector) {
         booksModel.getAll(context.params)
             .then((res) => {
+                let coveredBooks = res.map((book)=>{
+                    let coverAsNumber = parseInt(book.coverUrl);
+                    if(!book.coverUrl || !isNaN(coverAsNumber)){
+                        book.coverUrl = DEFAULT_BOOK_COVER_URL;
+                    }
+                    return book;
+                });
                 pageView.booksPage(selector, res);
             }, (err) => {
                 console.log(err);
@@ -79,7 +86,7 @@ class BooksController {
             });
     }
 
-    resultBooks(context, selector) {
+    resultGenreBooks(context, selector) {
         let options = { page: 1, size: 10000000};
         booksModel.getAll(options)
             .then((books) => {

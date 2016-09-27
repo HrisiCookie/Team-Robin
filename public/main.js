@@ -51,7 +51,7 @@ import { genresController } from './scripts/controllers/genres-controller.js';
         });
 
         this.get('#/books-result', (context)=>{
-            booksController.resultBooks(context, '#content');
+            booksController.resultGenreBooks(context, '#content');
         });
 
         this.get('#/books/:id', (context) => {
