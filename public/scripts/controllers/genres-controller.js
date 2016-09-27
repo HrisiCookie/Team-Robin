@@ -13,7 +13,7 @@ class GenresController {
             .then(() => {
                 $(selector).on('click', '.genre', function(){
                     let $this = $(this);
-                    context.redirect(`#/books/?genre=${$this.html()}`);
+                    context.redirect(`#/books-result?genre=${$this.html()}`);
                 });
             });
     }

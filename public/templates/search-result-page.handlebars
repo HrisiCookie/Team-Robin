@@ -1,0 +1,21 @@
+<h1>Search results</h1>
+{{#if filteredBooks}}
+<h3>Search result for: {{pattern}}</h3>
+<div class="table-responsive">
+    <table class="table">
+        {{#filteredBooks}}
+        <tr class="row">
+            <td class="col-md-3">
+                <img class="img-responsive" src="{{coverUrl}}">
+            </td>
+            <td class="col-md-3">
+                Ttitle: <a href="#/books/{{_id}}">{{title}}</a>
+            </td class="col-md-3">
+            <td>Rating: {{rating}}</td>
+        </tr>
+        {{/filteredBooks}}
+    </table>  
+</div>
+{{else}}
+<h3>No result for: {{pattern}}</h3>
+{{/if}}

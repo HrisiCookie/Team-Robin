@@ -7,6 +7,7 @@ class BooksModel {
 
     getAll(options) {
         let promise = new Promise((resolve, reject) => {
+            options = options || {};
             let page = options.page || 1;
             let size = options.size || 10;
             let url = `api/books?page=${page}&size=${size}`;

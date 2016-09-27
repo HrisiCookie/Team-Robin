@@ -79,9 +79,37 @@ class BooksController {
             });
     }
 
+    resultBooks(context, selector) {
+        let options = { page: 1, size: 10000000};
+        booksModel.getAll(options)
+            .then((books) => {
+                let genrePattern = context.params.genre.toLowerCase();
+                let filteredBooks = books.filter((book) => {
+                    let genres = book.genres || [];
+                    if (genres.some((gen) => { return gen.toLowerCase() === genrePattern; })) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
+
+                return {
+                    filteredBooks,
+                    pattern: context.params.genre
+                };
+            }, (err) => {
+                console.log(err);
+            })
+            .then((res) => {
+              return pageView.searchResultPage(selector, res);
+            })
+            .then();
+    }
+
     storeAllBooksCount() {
         booksModel.getAllBooksCount()
-        .then();
+            .then();
     }
 }
 

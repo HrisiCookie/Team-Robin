@@ -57,6 +57,10 @@ class PageView {
         return loadCompiledTemplate(selector, genres, 'genres-page');
     }
 
+    searchResultPage(selector, options){
+        return loadCompiledTemplate(selector, options, 'search-result-page');
+    }
+
 }
 
 let pageView = new PageView();
