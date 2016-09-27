@@ -1,6 +1,8 @@
 import { requester } from '../helpers/requester.js';
 import { userModel } from './user-model.js';
 
+const STORAGE_BOOKS_COUNT = 'STORAGE_ALL_BOOKS_COUNT';
+
 class BooksModel {
 
     getAll(options) {
@@ -37,6 +39,9 @@ class BooksModel {
                     return requester.post(url, options);
                 })
                 .then((res) => {
+                    let booksCount = +localStorage.getItem(STORAGE_BOOKS_COUNT);
+                    booksCount += 1;
+                    localStorage.setItem(STORAGE_BOOKS_COUNT, booksCount);
                     resolve(res);
                 }, (err) => {
                     reject(err);
@@ -82,6 +87,21 @@ class BooksModel {
                 })
                 .then((res) => {
                     resolve(res);
+                }, (err) => {
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
+
+    getAllBooksCount() {
+        let promise = new Promise((resolve, reject) => {
+            let url = `api/books?page=1&size=1000000000`;
+            requester.get(url)
+                .then((booksCount) => {
+                    localStorage.setItem(STORAGE_BOOKS_COUNT, booksCount.length);
+                    resolve();
                 }, (err) => {
                     reject(err);
                 });

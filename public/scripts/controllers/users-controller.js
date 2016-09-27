@@ -20,6 +20,8 @@ class UserController {
                             $('#login').addClass('hidden');
                             $('#register').addClass('hidden');
                             $('#logout').removeClass('hidden');
+                            $('#add-book').removeClass('hidden');
+                            $('#my-profile').removeClass('hidden');
                             notificator.success(`${res.username} signed in!`);
                             context.redirect('#/profile');
                         },
@@ -67,6 +69,8 @@ class UserController {
                 $('#login').removeClass('hidden');
                 $('#register').removeClass('hidden');
                 $('#logout').addClass('hidden');
+                $('#add-book').addClass('hidden');
+                $('#my-profile').addClass('hidden');
                 notificator.success('User signed out');
                 context.redirect('#/home');
             });

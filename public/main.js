@@ -1,6 +1,7 @@
 import { homeController } from './scripts/controllers/home-controller.js';
 import { usersController } from './scripts/controllers/users-controller.js';
 import { booksController } from './scripts/controllers/books-controller.js';
+import { genresController } from './scripts/controllers/genres-controller.js';
 
 
 (function () {
@@ -32,8 +33,21 @@ import { booksController } from './scripts/controllers/books-controller.js';
             usersController.profile(context, '#content');
         });
 
+        this.get('#/genres', (context)=>{
+            genresController.all(context, '#content');
+        });
+
         this.get('#/add-book', (context) => {
-            booksController.addBook(context, '#content');
+            usersController.isUserLoggedIn()
+                .then((isLogged) => {
+                    if (!isLogged) {
+                        context.redirect('#/home');
+                    }
+                    else {
+                        booksController.addBook(context, '#content');
+                    }
+                });
+
         });
 
         this.get('#/books/:id', (context) => {
@@ -52,12 +66,19 @@ import { booksController } from './scripts/controllers/books-controller.js';
                 $('#login').addClass('hidden');
                 $('#register').addClass('hidden');
                 $('#logout').removeClass('hidden');
+                $('#add-book').removeClass('hidden');
+                $('#my-profile').removeClass('hidden');
             }
             else {
                 $('body').removeClass('logged');
                 $('#login').removeClass('hidden');
                 $('#register').removeClass('hidden');
                 $('#logout').addClass('hidden');
+                $('#add-book').addClass('hidden');
+                $('#my-profile').addClass('hidden');
             }
+        })
+        .then(()=>{
+            booksController.storeAllBooksCount();
         });
 })();
