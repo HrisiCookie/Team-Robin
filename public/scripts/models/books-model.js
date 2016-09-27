@@ -1,4 +1,5 @@
 import { requester } from '../helpers/requester.js';
+import { userModel } from './user-model.js';
 
 class BooksModel {
 
@@ -22,13 +23,19 @@ class BooksModel {
     addBook(bookToAdd) {
         let promise = new Promise((resolve, reject) => {
             let url = 'api/books';
-            let headers = { 'x-auth-key': localStorage.getItem('STORAGE_AUTHENTICATION_KEY') };
-            let options = {
-                headers,
-                data: bookToAdd
-            };
+            let headers;
+            userModel.getLoggedHeader()
+                .then((resHeader) => {
+                    headers = resHeader;
+                })
+                .then(() => {
+                    let options = {
+                        headers,
+                        data: bookToAdd
+                    };
 
-            requester.post(url, options)
+                    return requester.post(url, options);
+                })
                 .then((res) => {
                     resolve(res);
                 }, (err) => {
@@ -57,19 +64,25 @@ class BooksModel {
     sendRating(bookId, rating) {
         let promise = new Promise((resolve, reject) => {
             let url = `api/books/${bookId}`;
-            let headers = { 'x-auth-key': localStorage.getItem('STORAGE_AUTHENTICATION_KEY') };
-            let options = {
-                headers,
-                data: {
-                    bookId,
-                    rating
-                }
-            };
+            let headers;
+            userModel.getLoggedHeader()
+                .then((resHeader) => {
+                    headers = resHeader;
+                })
+                .then(() => {
+                    let options = {
+                        headers,
+                        data: {
+                            bookId,
+                            rating
+                        }
+                    };
 
-            requester.put(url, options)
-                .then((res)=>{
+                    return requester.put(url, options);
+                })
+                .then((res) => {
                     resolve(res);
-                }, (err)=>{
+                }, (err) => {
                     reject(err);
                 });
         });

@@ -11,7 +11,7 @@ let notificator = (function () {
     return {
         success,
         error
-    }
+    };
 })();
 
 export{ notificator };

@@ -50,9 +50,27 @@ class UserModel {
         return promise;
     }
 
+    isLoggedIn(){
+        return Promise.resolve()
+        .then(()=>{
+            return !!localStorage.getItem(STORAGE_AUTH_KEY);
+        });
+    }
+
+    getLoggedHeader(){
+        return Promise.resolve()
+        .then(()=>{
+            return {
+                'x-auth-key': localStorage.getItem(STORAGE_AUTH_KEY)
+            };
+        });
+    }
+    
+
     logout() {
         let promise = new Promise((resolve, reject) => {
             localStorage.removeItem(STORAGE_AUTH_KEY);
+            localStorage.removeItem(STORAGE_USERNAME);
             resolve();
         });
 

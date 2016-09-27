@@ -1,5 +1,3 @@
-
-
 function send(method, url, options) {
     options = options || {};
 
