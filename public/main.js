@@ -84,5 +84,8 @@ import { genresController } from './scripts/controllers/genres-controller.js';
         })
         .then(()=>{
             booksController.storeAllBooksCount();
+        })
+        .then(()=>{
+            usersController.storeAllUsers();
         });
 })();

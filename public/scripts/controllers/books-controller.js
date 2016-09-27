@@ -1,3 +1,4 @@
+import { userModel } from '../models/user-model.js';
 import { booksModel } from '../models/books-model.js';
 import { pageView } from '../view/page-view.js';
 import { notificator } from '../helpers/notificator.js';
@@ -61,6 +62,17 @@ class BooksController {
     singleBook(context, selector) {
         booksModel.getSingleBookInfo(context.params.id)
             .then((res) => {
+                let reviews = res.reviews;
+                reviews = reviews.map((review)=>{
+                    let nickName;
+                    userModel.getNickNameById(review.userId)
+                        .then((resNickName)=>{
+                            debugger;
+                            nickName = resNickName;
+                            review.nickName = nickName;
+                        });
+                });
+                console.log(res);
                 return pageView.singleBookPage(selector, res);
             })
             .then(() => {

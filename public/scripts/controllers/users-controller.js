@@ -123,6 +123,11 @@ class UserController {
             });
     }
 
+    storeAllUsers(){
+        return userModel.getAllUsernames()
+            .then();
+    }
+
 }
 
 let usersController = new UserController();

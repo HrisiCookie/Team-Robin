@@ -50,22 +50,22 @@ class UserModel {
         return promise;
     }
 
-    isLoggedIn(){
+    isLoggedIn() {
         return Promise.resolve()
-        .then(()=>{
-            return !!localStorage.getItem(STORAGE_AUTH_KEY);
-        });
+            .then(() => {
+                return !!localStorage.getItem(STORAGE_AUTH_KEY);
+            });
     }
 
-    getLoggedHeader(){
+    getLoggedHeader() {
         return Promise.resolve()
-        .then(()=>{
-            return {
-                'x-auth-key': localStorage.getItem(STORAGE_AUTH_KEY)
-            };
-        });
+            .then(() => {
+                return {
+                    'x-auth-key': localStorage.getItem(STORAGE_AUTH_KEY)
+                };
+            });
     }
-    
+
 
     logout() {
         let promise = new Promise((resolve, reject) => {
@@ -127,6 +127,27 @@ class UserModel {
         });
 
         return promise;
+    }
+
+    getAllUsernames() {
+        let promise = new Promise((resolve, reject) => {
+            let url = 'api/users';
+            requester.get(url)
+                .then((res) => {
+                    res.forEach((user) => {
+                        localStorage.setItem(user._id, user.nickname);
+                    });
+                });
+        });
+
+        return promise;
+    }
+
+    getNickNameById(userId){
+        return Promise.resolve()
+            .then(()=>{
+                return localStorage.getItem(userId);
+            });
     }
 }
 
