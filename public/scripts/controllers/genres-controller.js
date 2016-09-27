@@ -11,7 +11,10 @@ class GenresController {
                 console.log(err);
             })
             .then(() => {
-
+                $(selector).on('click', '.genre', function(){
+                    let $this = $(this);
+                    context.redirect(`#/books/?genre=${$this.html()}`);
+                });
             });
     }
 }

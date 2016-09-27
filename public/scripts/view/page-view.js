@@ -12,8 +12,6 @@ function loadCompiledTemplate(selector, data, templateName) {
     let selectedItem = $(selector);
     return templater.get(templateName)
         .then((template) => {
-            console.log(data);
-            console.log(template(data));
             selectedItem.html(template(data));
         });
 }
