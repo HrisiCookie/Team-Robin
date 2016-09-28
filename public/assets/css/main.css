@@ -1,5 +1,21 @@
 body {
-    padding-top: 10px;
+    padding: 0;
+    margin: 0;
+}
+.page-header {
+    font-family: "SpringTime";
+    font-size: 40px;
+}
+h1 {
+    color: darkslateblue;
+    display: inline-block;
+}
+h2 {
+    color: steelblue;
+}
+h5 {
+    color: darkmagenta;
+    font-weight: bold;
 }
 ul {
   list-style-type: none;
