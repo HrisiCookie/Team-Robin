@@ -67,7 +67,6 @@ class BooksController {
                     let nickName;
                     userModel.getNickNameById(review.userId)
                         .then((resNickName)=>{
-                            debugger;
                             nickName = resNickName;
                             review.nickName = nickName;
                         });
@@ -89,7 +88,7 @@ class BooksController {
                                 notificator.success('Rating added successfully');
                                 $('#rating').html(rating);
                             }, (err) => {
-                                notificator.error(err.responseText);
+                                notificator.error(JSON.parse(err.responseText).message);
                             });
                     }
 
