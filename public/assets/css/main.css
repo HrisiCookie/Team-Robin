@@ -5,6 +5,7 @@ body {
 .page-header {
     font-family: "SpringTime";
     font-size: 40px;
+    color: steelblue;
 }
 h1 {
     color: darkslateblue;
