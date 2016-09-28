@@ -21,6 +21,7 @@ import {
 
         this.get('#/home', (context) => {
             $('#search').show();
+            $('footer').show();
             $('.logged-in').css({ 'visibility': 'visible' });
             homeController.all(context, '#content');
         });
@@ -44,6 +45,7 @@ import {
 
         this.get('#/profile', (context) => {
             $('#search').hide();
+            $('footer').hide();
             usersController.profile(context, '#content');
         });
 
@@ -59,6 +61,7 @@ import {
                         context.redirect('#/home');
                     } else {
                         $('#search').hide();
+                        $('footer').hide();
                         booksController.addBook(context, '#content');
                     }
                 });
