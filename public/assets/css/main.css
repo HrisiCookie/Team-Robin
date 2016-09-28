@@ -1,6 +1,5 @@
-body {
-    padding: 0;
-    margin: 0;
+.logged-in {
+    visibility: hidden;
 }
 .page-header {
     font-family: "SpringTime";
