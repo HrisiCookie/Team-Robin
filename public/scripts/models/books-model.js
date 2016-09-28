@@ -6,20 +6,35 @@ const VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT = 1000000000;
 
 class BooksModel {
 
-    getAll(options) {
+    getFirstBooks() {
         let promise = new Promise((resolve, reject) => {
-            options = options || {};
-            let page = options.page || 1,
-                size = options.size || 10,
-                start,
-                end;
-            if (page === 1) {
-                start = 0;
-                end = size;
-            } else {
-                start = (page - 1) * size;
-                end = ((page - 1) * size) + size;
+            let start = 0,
+                end = 10;
+
+            if (localStorage.getItem(BOOKS_STORAGE)) {
+                let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
+                resolve(books.slice(start, end));
+                return;
             }
+
+            let url = `api/books?page=1&size=${VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT}`;
+            requester.get(url)
+                .then((res) => {
+                    localStorage.setItem(BOOKS_STORAGE, JSON.stringify(res));
+                    resolve(res.slice(start, end));
+                }, (err) => {
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
+
+    getMoreBooks(page){
+        let promise = new Promise((resolve, reject) => {
+            let size = 10; 
+            let start = page * size,
+                end = start + size;
 
             if (localStorage.getItem(BOOKS_STORAGE)) {
                 let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));

@@ -7,18 +7,39 @@ const DEFAULT_BOOK_COVER_URL = 'http://www.jameshmayfield.com/wp-content/uploads
 
 class BooksController {
     getBooks(context, selector) {
-        booksModel.getAll(context.params)
+        let page = 0;
+
+        booksModel.getFirstBooks(page)
             .then((res) => {
-                let coveredBooks = res.map((book)=>{
+                let coveredBooks = res.map((book) => {
                     let coverAsNumber = parseInt(book.coverUrl);
-                    if(!book.coverUrl || !isNaN(coverAsNumber)){
+                    if (!book.coverUrl || !isNaN(coverAsNumber)) {
                         book.coverUrl = DEFAULT_BOOK_COVER_URL;
                     }
                     return book;
                 });
-                pageView.booksPage(selector, res);
+                pageView.booksPage(selector);
+                pageView.loadBooks(selector, res);
             }, (err) => {
                 console.log(err);
+            })
+            .then(() => {
+                $(window).scroll(function () {
+                    if(window.location.href === 'http://localhost:3000/#/books'){
+                    let curBottom = $(window).scrollTop() + $(window).height();
+                    let containerBottom = $(selector).offset().top + $(selector).height();
+                    if (curBottom >= containerBottom) {
+                        page += 1;
+                        booksModel.getMoreBooks(page)
+                            .then((res) => {
+                                pageView.loadBooks(selector, res);
+                            });
+                    }
+                }
+                else{
+                    page = 0;
+                }
+                });
             });
     }
 
@@ -63,10 +84,10 @@ class BooksController {
         booksModel.getSingleBookInfo(context.params.id)
             .then((res) => {
                 let reviews = res.reviews;
-                reviews = reviews.map((review)=>{
+                reviews = reviews.map((review) => {
                     let nickName;
                     userModel.getNickNameById(review.userId)
-                        .then((resNickName)=>{
+                        .then((resNickName) => {
                             nickName = resNickName;
                             review.nickName = nickName;
                         });
@@ -97,7 +118,7 @@ class BooksController {
     }
 
     resultGenreBooks(context, selector) {
-        let options = { page: 1, size: 10000000};
+        let options = { page: 1, size: 10000000 };
         booksModel.getAll(options)
             .then((books) => {
                 let genrePattern = context.params.genre.toLowerCase();
@@ -119,7 +140,7 @@ class BooksController {
                 console.log(err);
             })
             .then((res) => {
-              return pageView.searchResultPage(selector, res);
+                return pageView.searchResultPage(selector, res);
             })
             .then();
     }

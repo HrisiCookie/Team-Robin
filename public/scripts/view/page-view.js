@@ -8,11 +8,19 @@ function loadRawTemplate(selector, templateName) {
         });
 }
 
-function loadCompiledTemplate(selector, data, templateName) {
+function setHtmlWithCompiledData(selector, data, templateName) {
     let selectedItem = $(selector);
     return templater.get(templateName)
         .then((template) => {
             selectedItem.html(template(data));
+        });
+}
+
+function appendToHtmlCompiledData(selector, data, templateName) {
+    let selectedItem = $(selector);
+    return templater.get(templateName)
+        .then((template) => {
+            selectedItem.append(template(data));
         });
 }
 
@@ -30,19 +38,23 @@ class PageView {
         return loadRawTemplate(selector, 'register');
     }
 
-    booksPage(selector, books) {
-        let data = { books};
-        return loadCompiledTemplate(selector, data, 'all-books');
+    booksPage(selector) {
+        return loadRawTemplate(selector, 'books-page');
+    }
+
+    loadBooks(selector, books){
+        let data = { books };
+        return appendToHtmlCompiledData(selector, data, 'load-more-books');
     }
 
     profilePage(selector){
         let data = { username: localStorage.getItem('STORAGE_USERNAME') };
-        return loadCompiledTemplate(selector, data, 'profile');
+        return setHtmlWithCompiledData(selector, data, 'profile');
     }
 
     newsfeed(selector, news){
         let data = { news };
-        return loadCompiledTemplate(selector, data, 'newsfeed');
+        return setHtmlWithCompiledData(selector, data, 'newsfeed');
     }
 
     addBookPage(selector){
@@ -50,15 +62,15 @@ class PageView {
     }
 
     singleBookPage(selector, book){
-        return loadCompiledTemplate(selector, book, 'single-book');
+        return setHtmlWithCompiledData(selector, book, 'single-book');
     }
 
     genresPage(selector, genres){
-        return loadCompiledTemplate(selector, genres, 'genres-page');
+        return setHtmlWithCompiledData(selector, genres, 'genres-page');
     }
 
     searchResultPage(selector, options){
-        return loadCompiledTemplate(selector, options, 'search-result-page');
+        return setHtmlWithCompiledData(selector, options, 'search-result-page');
     }
 
 }
