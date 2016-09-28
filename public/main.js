@@ -31,7 +31,7 @@ import { genresController } from './scripts/controllers/genres-controller.js';
 
         this.get('#/books', (context) => {
             $('#search').show();
-            booksController.all(context, '#content');
+            booksController.getBooks(context, '#content');
         });
 
         this.get('#/profile', (context) => {
@@ -89,9 +89,6 @@ import { genresController } from './scripts/controllers/genres-controller.js';
                 $('#add-book').addClass('hidden');
                 $('#my-profile').addClass('hidden');
             }
-        })
-        .then(()=>{
-            booksController.storeAllBooksCount();
         })
         .then(()=>{
             usersController.storeAllUsers();

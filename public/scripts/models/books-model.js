@@ -1,20 +1,37 @@
 import { requester } from '../helpers/requester.js';
 import { userModel } from './user-model.js';
 
-const STORAGE_BOOKS_COUNT = 'STORAGE_ALL_BOOKS_COUNT';
+const BOOKS_STORAGE = 'STORAGE_ALL_BOOKS';
+const VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT = 1000000000;
 
 class BooksModel {
 
     getAll(options) {
         let promise = new Promise((resolve, reject) => {
             options = options || {};
-            let page = options.page || 1;
-            let size = options.size || 10;
-            let url = `api/books?page=${page}&size=${size}`;
+            let page = options.page || 1,
+                size = options.size || 10,
+                start,
+                end;
+            if (page === 1) {
+                start = 0;
+                end = size;
+            } else {
+                start = (page - 1) * size;
+                end = ((page - 1) * size) + size;
+            }
 
+            if (localStorage.getItem(BOOKS_STORAGE)) {
+                let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
+                resolve(books.slice(start, end));
+                return;
+            }
+
+            let url = `api/books?page=1&size=${VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT}`;
             requester.get(url)
                 .then((res) => {
-                    resolve(res);
+                    localStorage.setItem(BOOKS_STORAGE, JSON.stringify(res));
+                    resolve(res.slice(start, end));
                 }, (err) => {
                     reject(err);
                 });
@@ -40,9 +57,9 @@ class BooksModel {
                     return requester.post(url, options);
                 })
                 .then((res) => {
-                    let booksCount = +localStorage.getItem(STORAGE_BOOKS_COUNT);
-                    booksCount += 1;
-                    localStorage.setItem(STORAGE_BOOKS_COUNT, booksCount);
+                    let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
+                    books.push(res);
+                    localStorage.setItem(BOOKS_STORAGE, JSON.stringify(books));
                     resolve(res);
                 }, (err) => {
                     reject(err);
@@ -54,8 +71,16 @@ class BooksModel {
 
     getSingleBookInfo(bookId) {
         let promise = new Promise((resolve, reject) => {
-            let url = `api/books/${bookId}`;
+            if (localStorage.getItem(BOOKS_STORAGE)) {
+                let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
+                let bookToReturn = books.find((book) => {
+                    return bookId === book._id;
+                });
+                resolve(bookToReturn);
+                return;
+            }
 
+            let url = `api/books/${bookId}`;
             requester.get(url)
                 .then((res) => {
                     resolve(res);
@@ -69,6 +94,16 @@ class BooksModel {
 
     sendRating(bookId, rating) {
         let promise = new Promise((resolve, reject) => {
+            if (localStorage.getItem(BOOKS_STORAGE)) {
+                let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
+                let bookToChange = books.find((book) => {
+                    return bookId === book._id;
+                });
+
+                bookToChange.rating = rating;
+
+                localStorage.setItem(BOOKS_STORAGE, JSON.stringify(books));
+            }
             let url = `api/books/${bookId}`;
             let headers;
             userModel.getLoggedHeader()
@@ -88,21 +123,6 @@ class BooksModel {
                 })
                 .then((res) => {
                     resolve(res);
-                }, (err) => {
-                    reject(err);
-                });
-        });
-
-        return promise;
-    }
-
-    getAllBooksCount() {
-        let promise = new Promise((resolve, reject) => {
-            let url = `api/books?page=1&size=1000000000`;
-            requester.get(url)
-                .then((booksCount) => {
-                    localStorage.setItem(STORAGE_BOOKS_COUNT, booksCount.length);
-                    resolve();
                 }, (err) => {
                     reject(err);
                 });

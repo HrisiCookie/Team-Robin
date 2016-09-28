@@ -6,7 +6,7 @@ import { notificator } from '../helpers/notificator.js';
 const DEFAULT_BOOK_COVER_URL = 'http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg';
 
 class BooksController {
-    all(context, selector) {
+    getBooks(context, selector) {
         booksModel.getAll(context.params)
             .then((res) => {
                 let coveredBooks = res.map((book)=>{
@@ -71,7 +71,6 @@ class BooksController {
                             review.nickName = nickName;
                         });
                 });
-                console.log(res);
                 return pageView.singleBookPage(selector, res);
             })
             .then(() => {

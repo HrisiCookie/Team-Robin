@@ -2,6 +2,7 @@ import { requester } from '../helpers/requester.js';
 import * as CryptoJS from '../../bower_components/crypto-js/crypto-js.js';
 
 const STORAGE_AUTH_KEY = 'STORAGE_AUTHENTICATION_KEY';
+const STORAGE_USERNAMES_AND_ID = 'STORAGE_USERNAMES';
 const STORAGE_USERNAME = 'STORAGE_USERNAME';
 
 function createRequestOptions(user) {
@@ -134,19 +135,23 @@ class UserModel {
             let url = 'api/users';
             requester.get(url)
                 .then((res) => {
+                    let users = {};
                     res.forEach((user) => {
-                        localStorage.setItem(user._id, user.nickname);
+                        users[user._id] = user.nickname;
                     });
+
+                    localStorage.setItem(STORAGE_USERNAMES_AND_ID, JSON.stringify(users));
                 });
         });
 
         return promise;
     }
 
-    getNickNameById(userId){
+    getNickNameById(userId) {
         return Promise.resolve()
-            .then(()=>{
-                return localStorage.getItem(userId);
+            .then(() => {
+                let users = JSON.parse(localStorage.getItem(STORAGE_USERNAMES_AND_ID));
+                return users[userId];
             });
     }
 }
