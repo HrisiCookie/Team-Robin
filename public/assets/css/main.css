@@ -1,5 +1,13 @@
 body {
-    padding-top: 50px;
+    padding-top: 10px;
+}
+ul {
+  list-style-type: none;
+}
+.nav-li {
+    font-family: "Adamina";
+    font-size: 1.5em;
+    font-weight: bold;
 }
 .dropdown.dropdown-lg .dropdown-menu {
     margin-top: -1px;

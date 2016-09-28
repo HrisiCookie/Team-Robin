@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GeriCookie/Books.git"
+    "url": "git+https://github.com/HrisiCookie/Team-Robin.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GeriCookie/Books/issues"
+    "url": "https://github.com/HrisiCookie/Team-Robin/issues"
   },
-  "homepage": "https://github.com/GeriCookie/Books#readme",
+  "homepage": "https://github.com/HrisiCookie/Team-Robin#readme",
   "dependencies": {
     "babel-core": "^5.8.23",
     "body-parser": "^1.13.3",

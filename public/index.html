@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="./bower_components/toastr/toastr.css" rel="stylesheet">
-    <link href="./css/logged-in-out.css" rel="stylesheet">
-    <link href="./css/search.css" rel="stylesheet">
-
+    <link href="./assets/css/logged-in-out.css" rel="stylesheet">
+    <link href="./assets/css/main.css" rel="stylesheet">
+    <!--<link href="./assets/fonts/adamina/Adamina-Regular.ttf" rel="stylesheet" >-->
 </head>
 
 <body>
@@ -17,55 +17,54 @@
             <h1 class="page-header"><a href="#/home">myBooks</a></h1>
             <nav class="navbar navbar-default">
                 <ul class="nav navbar-nav col-md-9">
-                    <li><a href="#/home">Home</a></li>
-                    <li><a href="#/books">Books</a></li>
-                    <li id="my-profile"><a href="#/profile">My Profile</a></li>
-                    <li id="add-book"><a href="#/add-book">Add new book</a></li>
-                    <li><a href="#/genres">Genres</a></li>
+                    <li><a class="nav-li" href="#/home">Home</a></li>
+                    <li><a class="nav-li" href="#/books">Books</a></li>
+                    <li id="my-profile" class="nav-li"><a href="#/profile">My Profile</a></li>
+                    <li id="add-book" class="nav-li"><a href="#/add-book">Add new book</a></li>
+                    <li><a class="nav-li" href="#/genres">Genres</a></li>
                 </ul>
                 <a href="#/login" id="login" class="btn btn-primary">Sign In</a>
                 <a href="#/register" id="register" class="btn btn-success">Sign Up</a>
                 <a href="#/logout" id="logout" class="btn btn-danger">Sign Out</a>
             </nav>
-
             <div class="row">
-		<div class="col-md-12">
-            <div class="input-group" id="adv-search">
-                <input type="text" class="form-control" placeholder="Search for books" />
-                <div class="input-group-btn">
-                    <div class="btn-group" role="group">
-                        <div class="dropdown dropdown-lg">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                            <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                <form class="form-horizontal" role="form">
-                                  <div class="form-group">
-                                    <label for="filter">Filter by</label>
-                                    <select class="form-control">
-                                        <option value="0" selected>All Books</option>
-                                        <option value="1">Featured</option>
-                                        <option value="2">Most popular</option>
-                                        <option value="3">Top rated</option>
-                                        <option value="4">Most commented</option>
-                                    </select>
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="contain">Author</label>
-                                    <input class="form-control" type="text" />
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="contain">Title</label>
-                                    <input class="form-control" type="text" />
-                                  </div>
-                                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                </form>
+                <div class="col-md-12">
+                    <div class="input-group" id="adv-search">
+                        <input type="text" class="form-control" placeholder="Search for books" />
+                        <div class="input-group-btn">
+                            <div class="btn-group" role="group">
+                                <div class="dropdown dropdown-lg">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                        <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <label for="filter">Filter by</label>
+                                            <select class="form-control">
+                                                <option value="0" selected>All Books</option>
+                                                <option value="1">Featured</option>
+                                                <option value="2">Most popular</option>
+                                                <option value="3">Top rated</option>
+                                                <option value="4">Most commented</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contain">Author</label>
+                                            <input class="form-control" type="text" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contain">Title</label>
+                                            <input class="form-control" type="text" />
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </div>
                 </div>
             </div>
-          </div>
-        </div>
         </header>
         <div id="content"></div>
     </div>
