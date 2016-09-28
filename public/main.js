@@ -1,19 +1,27 @@
-import { homeController } from './scripts/controllers/home-controller.js';
-import { usersController } from './scripts/controllers/users-controller.js';
-import { booksController } from './scripts/controllers/books-controller.js';
-import { genresController } from './scripts/controllers/genres-controller.js';
+import {
+    homeController
+} from './scripts/controllers/home-controller.js';
+import {
+    usersController
+} from './scripts/controllers/users-controller.js';
+import {
+    booksController
+} from './scripts/controllers/books-controller.js';
+import {
+    genresController
+} from './scripts/controllers/genres-controller.js';
 
 
 (function () {
     let sammyApp = Sammy('#content', function () {
 
         this.get('#/', function () {
-            $('#search').show();
             this.redirect('#/home');
         });
 
         this.get('#/home', (context) => {
             $('#search').show();
+            $('.logged-in').css({ 'visibility': 'visible' });
             homeController.all(context, '#content');
         });
 
@@ -39,7 +47,7 @@ import { genresController } from './scripts/controllers/genres-controller.js';
             usersController.profile(context, '#content');
         });
 
-        this.get('#/genres', (context)=>{
+        this.get('#/genres', (context) => {
             $('#search').show();
             genresController.all(context, '#content');
         });
@@ -49,8 +57,7 @@ import { genresController } from './scripts/controllers/genres-controller.js';
                 .then((isLogged) => {
                     if (!isLogged) {
                         context.redirect('#/home');
-                    }
-                    else {
+                    } else {
                         $('#search').hide();
                         booksController.addBook(context, '#content');
                     }
@@ -58,7 +65,7 @@ import { genresController } from './scripts/controllers/genres-controller.js';
 
         });
 
-        this.get('#/books-result', (context)=>{
+        this.get('#/books-result', (context) => {
             booksController.resultGenreBooks(context, '#content');
         });
 
@@ -80,8 +87,7 @@ import { genresController } from './scripts/controllers/genres-controller.js';
                 $('#logout').removeClass('hidden');
                 $('#add-book').removeClass('hidden');
                 $('#my-profile').removeClass('hidden');
-            }
-            else {
+            } else {
                 $('body').removeClass('logged');
                 $('#login').removeClass('hidden');
                 $('#register').removeClass('hidden');
@@ -90,7 +96,7 @@ import { genresController } from './scripts/controllers/genres-controller.js';
                 $('#my-profile').addClass('hidden');
             }
         })
-        .then(()=>{
+        .then(() => {
             usersController.storeAllUsers();
         });
 })();
