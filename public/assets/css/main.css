@@ -15,7 +15,15 @@ footer {
 #foot {
     padding: 2%;
 }
-
+#spa {
+    display: inline-block;
+    margin-left: 15px;
+}
+.spa {
+    font-size: 2.5em;
+    font-family: SpringTime;
+    color: green;
+}
 .foot-center {
     text-align: center;
 }
