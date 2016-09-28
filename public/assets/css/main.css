@@ -1,8 +1,10 @@
 body {
     background-color: whitesmoke;
 }
+
 main {
     min-height: 560px;
+    font-family: SpringTime;
 }
 
 footer {
@@ -15,15 +17,18 @@ footer {
 #foot {
     padding: 2%;
 }
+
 #spa {
     display: inline-block;
     margin-left: 15px;
 }
+
 .spa {
     font-size: 2.5em;
     font-family: SpringTime;
     color: green;
 }
+
 .foot-center {
     text-align: center;
 }
@@ -32,7 +37,7 @@ footer {
     visibility: hidden;
 }
 
-#github-img :hover {
+#github-img:hover {
     border: 2px solid steelblue;
 }
 
@@ -41,12 +46,15 @@ footer {
     font-size: 40px;
     color: steelblue;
 }
+
 .resource-link {
     background-color: ghostwhite;
 }
+
 .github-btn {
     float: right;
 }
+
 h1 {
     color: darkslateblue;
     display: inline-block;
@@ -58,7 +66,11 @@ h2 {
 
 h5 {
     color: darkmagenta;
-    font-weight: bold;
+}
+
+#copyright {
+    float: right;
+    font-size: 1.3em;
 }
 
 ul {
