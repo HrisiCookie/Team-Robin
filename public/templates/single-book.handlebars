@@ -1,5 +1,5 @@
 <div id="book-wrapper">
-    <h1 data-id={{_id}}>{{title}}</h1>
+    <h1 data-id={{_id}}>{{{title}}}</h1>
     <table class="table">
         <tr>
             <td col-md-6>
@@ -30,14 +30,34 @@
                 {{/genres}}
             </td>
         </tr>
+        <tr>
+            <td class="col-md-3">
+                <div class="status-wrapper">
+                    <h2>Status:</h2>{{#if status}} <button class="btn btn-unactive">{{status}}</button></div> {{else}}<h3>No Status yet</h3> {{/if}}
+                </div>
+            </td>
+            <td class="col-md-9">
+                <div class="review-wrapper"> 
+                    <h2>Reviews:</h2>
+                    {{#if reviews}}
+                    {{#reviews}}
+                    <div>
+                    <strong><a href="">{{this.nickName}}:</a></strong>        
+                    <h3>{{this.review}}</h3>
+                    <br>
+                    <br>
+                    </div>
+                    {{/reviews}}
+                    {{else}}
+                    <h3>Yours will be the first.</h3>
+                    {{/if}}
+                    <div class="form-group">
+                    <textarea type="text" class="form-control"  placeholder="Write something about it..."></textarea>
+                    <button class="form-control">Send</button>
+                    </div>
+                    </div>
+            </td>
+        </tr>
     </table>
-    <div class="review-wrapper "> 
-    <h3>Reviews:</h3>
-    {{#reviews}}
-    <div>
-    <p><strong>{{this.review}}</strong></p>
-    <a href="">{{this.nickName}}</a>
-    </div>
-    {{/reviews}}
-    </div>
+    
 </div>
