@@ -118,8 +118,7 @@ class BooksController {
     }
 
     resultGenreBooks(context, selector) {
-        let options = { page: 1, size: 10000000 };
-        booksModel.getAll(options)
+        booksModel.getAll()
             .then((books) => {
                 let genrePattern = context.params.genre.toLowerCase();
                 let filteredBooks = books.filter((book) => {

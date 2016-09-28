@@ -4,7 +4,31 @@ import { userModel } from './user-model.js';
 const BOOKS_STORAGE = 'STORAGE_ALL_BOOKS';
 const VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT = 1000000000;
 
+
+
 class BooksModel {
+
+    getAll(){
+        let promise = new Promise((resolve, reject) => {
+
+            if (localStorage.getItem(BOOKS_STORAGE)) {
+                let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
+                resolve(books);
+                return;
+            }
+
+            let url = `api/books?page=1&size=${VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT}`;
+            requester.get(url)
+                .then((res) => {
+                    localStorage.setItem(BOOKS_STORAGE, JSON.stringify(res));
+                    resolve(res);
+                }, (err) => {
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
 
     getFirstBooks() {
         let promise = new Promise((resolve, reject) => {
