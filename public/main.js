@@ -28,11 +28,13 @@ import {
 
         this.get('#/login', (context) => {
             $('#search').hide();
+            $('footer').hide();
             usersController.login(context, '#content');
         });
 
         this.get('#/register', (context) => {
             $('#search').hide();
+            $('footer').hide();
             usersController.register(context, '#content');
         });
 
@@ -40,6 +42,7 @@ import {
 
         this.get('#/books', (context) => {
             $('#search').show();
+            $('footer').hide();
             booksController.getBooks(context, '#content');
         });
 
@@ -51,6 +54,7 @@ import {
 
         this.get('#/genres', (context) => {
             $('#search').show();
+            $('footer').hide();
             genresController.all(context, '#content');
         });
 
