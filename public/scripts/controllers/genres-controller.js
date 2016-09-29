@@ -5,6 +5,9 @@ class GenresController {
     all(context, selector){
         genresModel.getAll()
             .then((res) => {
+                res.sort((a, b) => {
+                    return a.toLowerCase().localeCompare(b.toLowerCase());
+                });
                 let data = { genres: res };
                 pageView.genresPage(selector, data);
             }, (err) => {
