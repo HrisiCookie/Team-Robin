@@ -147,6 +147,31 @@ class UserModel {
         return promise;
     }
 
+    getCurrentUserInfo() {
+        let promise = new Promise((resolve, reject) => {
+            let currUserNickname = localStorage.getItem(STORAGE_USERNAME);
+            let users = JSON.parse(localStorage.getItem(STORAGE_USERNAMES_AND_ID));
+            let currUserId;
+            for (let id in users) {
+                if (users[id] === currUserNickname) {
+                    currUserId = id;
+                    break;
+                }
+            }
+
+            let url = `api/users/${currUserId}`;
+
+            requester.get(url)
+                .then((res) => {
+                    resolve(res);
+                }, (err) => {
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
+
     getNickNameById(userId) {
         return Promise.resolve()
             .then(() => {

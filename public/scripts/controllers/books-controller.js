@@ -5,6 +5,23 @@ import { notificator } from '../helpers/notificator.js';
 
 const DEFAULT_BOOK_COVER_URL = 'http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg';
 
+function getStatusOfBook(currentUserInfo, book) {
+    let booksToRead = currentUserInfo.booksToRead || [];
+    let booksRead = currentUserInfo.booksRead || [];
+    let booksReading = currentUserInfo.booksCurrentlyReading || [];
+
+    let isToRead = booksToRead.some((wr) => { return wr._id === book._id; });
+    let isRead = booksRead.some((r) => { return r._id === book._id; });
+    let isReading = booksReading.some((cr) => { return cr._id === book._id; });
+
+    switch (true) {
+        case isToRead: return 'Want to read';
+        case isRead: return 'Already read';
+        case isReading: return 'Currently reading';
+        default: return 'No status';
+    }
+}
+
 class BooksController {
     getBooks(context, selector) {
         let page = 0;
@@ -25,20 +42,20 @@ class BooksController {
             })
             .then(() => {
                 $(window).scroll(function () {
-                    if(window.location.href === 'http://localhost:3000/#/books'){
-                    let curBottom = $(window).scrollTop() + $(window).height();
-                    let containerBottom = $(selector).offset().top + $(selector).height();
-                    if (curBottom >= containerBottom) {
-                        page += 1;
-                        booksModel.getMoreBooks(page)
-                            .then((res) => {
-                                pageView.loadBooks(selector, res);
-                            });
+                    if (window.location.href === 'http://localhost:3000/#/books') {
+                        let curBottom = $(window).scrollTop() + $(window).height();
+                        let containerBottom = $(selector).offset().top + $(selector).height();
+                        if (curBottom >= containerBottom) {
+                            page += 1;
+                            booksModel.getMoreBooks(page)
+                                .then((res) => {
+                                    pageView.loadBooks(selector, res);
+                                });
+                        }
                     }
-                }
-                else{
-                    page = 0;
-                }
+                    else {
+                        page = 0;
+                    }
                 });
             });
     }
@@ -81,6 +98,7 @@ class BooksController {
     }
 
     singleBook(context, selector) {
+        let book;
         booksModel.getSingleBookInfo(context.params.id)
             .then((res) => {
                 let reviews = res.reviews;
@@ -92,7 +110,15 @@ class BooksController {
                             review.nickName = nickName;
                         });
                 });
-                return pageView.singleBookPage(selector, res);
+                book = res;
+                if($('body').hasClass('logged')){
+                     return userModel.getCurrentUserInfo();
+                }
+            })
+            .then((currentUserInfo) => {
+                debugger;
+                book.status = getStatusOfBook(currentUserInfo, book);
+                return pageView.singleBookPage(selector, book);
             })
             .then(() => {
                 $('#btn-add-rating').on('click', function () {
