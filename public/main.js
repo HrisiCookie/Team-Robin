@@ -16,7 +16,7 @@ import {
     let sammyApp = Sammy('#content', function () {
 
         this.get('#/', function () {
-            this.redirect('#/home');
+            // this.redirect('#/home');
         });
 
         this.get('#/home', (context) => {
