@@ -98,10 +98,11 @@ class BooksController {
     }
 
     singleBook(context, selector) {
-        let book;
+        let book, isLoggedIn;
         booksModel.getSingleBookInfo(context.params.id)
             .then((res) => {
                 let reviews = res.reviews;
+                isLoggedIn = $('body').hasClass('logged');
                 reviews = reviews.map((review) => {
                     let nickName;
                     userModel.getNickNameById(review.userId)
@@ -111,13 +112,15 @@ class BooksController {
                         });
                 });
                 book = res;
-                if($('body').hasClass('logged')){
-                     return userModel.getCurrentUserInfo();
+                if (isLoggedIn) {
+                    return userModel.getCurrentUserInfo();
                 }
             })
             .then((currentUserInfo) => {
-                debugger;
-                book.status = getStatusOfBook(currentUserInfo, book);
+                if (isLoggedIn) {
+                    book.status = getStatusOfBook(currentUserInfo, book);
+                }
+
                 return pageView.singleBookPage(selector, book);
             })
             .then(() => {
