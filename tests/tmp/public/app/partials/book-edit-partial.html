@@ -1,0 +1,57 @@
+<div data-id="{{_id}}" class="form-horizontal">
+    <div class="form-group">
+        <label for="tb-title" class="col-sm-2 control-label">Title: </label>
+
+        <div class="col-sm-6">
+            <input type="text" id="tb-title" class="form-control" placeholder="Title" value="{{{title}}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tb-author" class="col-sm-2 control-label">Author: </label>
+
+        <div class="col-sm-6">
+            <input type="text" id="tb-author" class="form-control" placeholder="Author" value="{{{author}}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tb-genre" class="col-sm-2 control-label">Genres:</label>
+        <div class="col-sm-6 form-group form-inline">
+            {{#each genres}}
+            <input type="text" class="form-control" id=tb-genre" placeholder="Genre" value="{{{this}}}">
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tb-description" class="col-sm-2 control-label">Description: </label>
+
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="tb-description" placeholder="Description"
+                   value="{{{description}}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tb-pages" class="col-sm-2 control-label">Number of pages: </label>
+
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="tb-pages" placeholder="Number of pages" value="{{{pages}}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tb-cover-url" class="col-sm-2 control-label">Enter url of book cover: </label>
+
+        <div class="col-sm-6">
+            <input type="text" id="tb-cover-url" class="form-control" placeholder="Url of image" value={{{coverUrl}}}>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="save" type="button" class="btn btn-primary">Edit book</button>
+        </div>
+    </div>
+</div>

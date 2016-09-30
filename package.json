@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha -R spec tests --compilers js:babel/register",
+    "test": "node node_modules/mocha/bin/mocha  tests/",
     "postinstall": "node ./node_modules/bower/bin/bower install"
   },
   "repository": {
@@ -19,12 +19,15 @@
   },
   "homepage": "https://github.com/HrisiCookie/Team-Robin#readme",
   "dependencies": {
+    "babel-cli": "^6.16.0",
     "babel-core": "^5.8.23",
     "body-parser": "^1.13.3",
     "bower": "^1.5.2",
+    "chai": "^3.5.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "http-server": "^0.8.0",
+    "mocha": "^3.1.0",
     "mongoose": "^4.1.3",
     "openurl": "^1.1.1"
   }

@@ -1,0 +1,30 @@
+<div class="book-container" data-id="{{_id}}">
+  <h2 class="book-title"><a href="#/books/{{_id}}" class="button">{{{title}}}</a>
+    <small><a class="link-edit-book" href="#/books/{{_id}}/edit">Edit</a></small>
+  </h2>
+
+  <div class="socialMargin">
+    <!--
+      data-href should be the link to the book
+      let say it's: books.com/#/books/55e368a16e5b979c20a93e56
+      -->
+    <div class="fb-like" data-href="https://www.goodreads.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <img src="{{{coverUrl}}}" style="margin-top: 30px" alt="The book has no cover" width="250" height="350">
+    </div>
+    <div class="col-md-7">
+      <p>Author:<a href="#/books?author={{{author}}}" class="button">{{author}}</a></p>
+
+      <p>Genres: {{#each genres}}
+        <a href="#/books?genre={{{this}}}" class="button">{{{this}}}</a> {{/each}}
+      </p>
+      <p>Pages: {{pages}}</p>
+      <p>Description: {{{description}}} <a href="#/books/{{_id}}" class="button">more...</a></p>
+
+      <button class="btn btn-primary btn-change-status" data-status="want-to-read">Want to read</button>
+      <button class="btn btn-primary btn-change-status" data-status="currently-reading">Currently reading</button>
+      <button class="btn btn-primary btn-change-status" data-status="read">Read</button>
+    </div>
+  </div>
