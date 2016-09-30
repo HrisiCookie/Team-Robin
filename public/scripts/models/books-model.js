@@ -8,7 +8,7 @@ const VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT = 1000000000;
 
 class BooksModel {
 
-    getAll(){
+    getAll() {
         let promise = new Promise((resolve, reject) => {
 
             if (localStorage.getItem(BOOKS_STORAGE)) {
@@ -54,9 +54,9 @@ class BooksModel {
         return promise;
     }
 
-    getMoreBooks(page){
+    getMoreBooks(page) {
         let promise = new Promise((resolve, reject) => {
-            let size = 10; 
+            let size = 10;
             let start = page * size,
                 end = start + size;
 
@@ -158,6 +158,28 @@ class BooksModel {
                         }
                     };
 
+                    return requester.put(url, options);
+                })
+                .then((res) => {
+                    resolve(res);
+                }, (err) => {
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
+
+    changeStatus(bookId, status) {
+        let promise = new Promise((resolve, reject) => {
+            let url = 'api/mybooks';
+            let data = {
+                bookId: bookId,
+                bookStatus: status
+            };
+            userModel.getLoggedHeader()
+                .then((headers) => {
+                    let options = { data, headers };
                     return requester.put(url, options);
                 })
                 .then((res) => {

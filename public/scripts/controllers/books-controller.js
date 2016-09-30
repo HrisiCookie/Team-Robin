@@ -10,15 +10,12 @@ function getStatusOfBook(currentUserInfo, book) {
     let booksRead = currentUserInfo.booksRead || [];
     let booksReading = currentUserInfo.booksCurrentlyReading || [];
 
-    let isToRead = booksToRead.some((wr) => { return wr._id === book._id; });
-    let isRead = booksRead.some((r) => { return r._id === book._id; });
-    let isReading = booksReading.some((cr) => { return cr._id === book._id; });
+    book.isToRead = booksToRead.some((wr) => { return wr._id === book._id; });
+    book.isRead = booksRead.some((r) => { return r._id === book._id; });
+    book.isReading = booksReading.some((cr) => { return cr._id === book._id; });
 
-    switch (true) {
-        case isToRead: return 'Want to read';
-        case isRead: return 'Already read';
-        case isReading: return 'Currently reading';
-        default: return 'No status';
+    if (book.isToRead || book.isRead || book.isReading) {
+        book.status = true;
     }
 }
 
@@ -133,6 +130,7 @@ class BooksController {
             .then((resBook) => {
                 addNickNamesToReviews(resBook);
                 convertRatingToArray(resBook);
+
                 book = resBook;
 
                 isLoggedIn = $('body').hasClass('logged');
@@ -142,17 +140,32 @@ class BooksController {
             })
             .then((currentUserInfo) => {
                 if (isLoggedIn) {
-                    book.status = getStatusOfBook(currentUserInfo, book);
+                    getStatusOfBook(currentUserInfo, book);
                 }
 
                 return pageView.singleBookPage(selector, book);
             })
             .then(() => {
-                $('.rating-adder').on('click', '.btn-add-rating', function(){
+                $('.rating-adder').on('click', '.btn-add-rating', function () {
                     let rating = $(this).attr('data-id');
                     let bookId = $('#book-title').attr('data-id');
-                    booksModel.sendRating(bookId, rating);
-                    location.reload();
+                    booksModel.sendRating(bookId, rating)
+                        .then(() => {
+                            notificator.success('Rating added');
+                            location.reload();
+                        });
+
+                });
+
+                $('.status-changer').on('click', '.btn-change-status', function () {
+                    let status = $(this).attr('data-status');
+                    let bookId = $('#book-title').attr('data-id');
+
+                    booksModel.changeStatus(bookId, status)
+                        .then(()=>{
+                            notificator.success('Status changed');
+                            location.reload();
+                        });
                 });
             });
     }

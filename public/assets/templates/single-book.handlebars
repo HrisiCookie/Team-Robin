@@ -49,6 +49,13 @@
                             </button>
                         </h4>
                     </div>
+                    <div class="status-changer">
+                        <h4>Change status: <br>
+                            <button data-status="want-to-read" class="btn btn-danger btn-change-status {{#if isToRead}}hidden{{/if}}">Want to Read</button>
+                            <button data-status="currently-reading" class="btn btn-info btn-change-status {{#if isReading}}hidden{{/if}}">Currently reading</button>
+                            <button data-status="read" class="btn btn-warning btn-change-status {{#if isRead}}hidden{{/if}}">Already read</button>
+                        </h4>
+                    </div>
                 {{/if}}
                 
             </td>
@@ -62,7 +69,18 @@
         <tr>
             <td class="col-md-3">
                 <div class="status-wrapper">
-                    {{#if status}}<h2>Status:</h2><button class="btn btn-lg btn-unactive"><h3>{{status}}</h3></button></div>{{/if}}
+                    <h2>Status:</h2>
+                    <h3>
+                        {{#if isToRead}}
+                            Want to read
+                        {{/if}}
+                        {{#if isRead}}
+                            Already read
+                        {{/if}}
+                        {{#if isReading}}
+                            Currently reading
+                        {{/if}}
+                    </h3>
                 </div>
             </td>
             <td class="col-md-9">

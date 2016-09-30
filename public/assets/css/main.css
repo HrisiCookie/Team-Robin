@@ -141,3 +141,7 @@ ul {
 .btn-star :hover{
     background-color: #f7f6ef;
 }
+
+.btn-change-status{
+    margin: 5px;
+}
