@@ -145,3 +145,11 @@ ul {
 .btn-change-status{
     margin: 5px;
 }
+
+.single-review-wrapper{
+    border-bottom: 1px solid #8e8e8b;
+}
+
+.review-rating-adder .clicked{
+    background-color: green;
+}

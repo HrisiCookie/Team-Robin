@@ -42,7 +42,7 @@ function convertRatingToArray(book) {
     else {
         book.rating = [];
         for (let i = 0; i < rating; i += 1) {
-            book.rating.push(i);
+            book.rating.push(rating);
         }
     }
 
@@ -162,10 +162,44 @@ class BooksController {
                     let bookId = $('#book-title').attr('data-id');
 
                     booksModel.changeStatus(bookId, status)
-                        .then(()=>{
+                        .then(() => {
                             notificator.success('Status changed');
                             location.reload();
                         });
+                });
+
+                $('.review-rating-adder').on('click', '.btn-add-rating', function () {
+                    let $this = $(this);
+                    debugger;
+                    let addRatingBtns = $('.review-rating-adder .btn-add-rating').get();
+                    addRatingBtns.forEach((btn)=>{
+                        debugger;
+                        let $btn = $(btn);
+                        if($btn.hasClass('clicked')){
+                            $btn.removeClass('clicked');
+                        }
+                    });
+                    $this.addClass('clicked');
+                    $('.review-rating-adder').attr('data-rating', $this.attr('data-id'));
+                });
+
+                $('#btn-review-send').on('click', function () {
+                    let bookId = $('#book-title').attr('data-id');
+                    let review = $('#tb-review').val();
+                    debugger;
+                    let rating = +$('.review-rating-adder').attr('data-rating');
+                    if (typeof rating !== 'number') {
+                        notificator.error('Choose rating [1-5]');
+                    }
+                    else {
+                        booksModel.addReview(bookId, review, rating)
+                            .then(() => {
+                                notificator.success('Review added successfully');
+                                location.reload();
+                            }, (err) => {
+                                notificator.error(err);
+                            });
+                    }
                 });
             });
     }

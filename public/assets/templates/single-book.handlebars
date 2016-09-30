@@ -10,7 +10,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="col-md-3">
                 <h4>Author: <strong>{{author}}</strong></h4>
                 <h4>Pages: 
                     {{#if pages}}
@@ -18,16 +18,18 @@
                     {{else}}
                         n/a
                     {{/if}}
-                </h4>                
-                <h4>Rating: 
-                    {{#if rating}}
-                        {{#each rating}}
-                        <span class="star glyphicon glyphicon-star"></span>
-                        {{/each}}
-                    {{else}}
-                        No rating
-                    {{/if}}
                 </h4>
+                <div class="rating-wrapper">                
+                    <h4>Rating: 
+                        {{#if rating}}
+                            {{#each rating}}
+                            <span class="star glyphicon glyphicon-star"></span>
+                            {{/each}}
+                        {{else}}
+                            No rating
+                        {{/if}}
+                    </h4>
+                </div>
                 {{#if status}}
                     <div class="rating-adder">
                         <h4>Rate it: 
@@ -59,7 +61,7 @@
                 {{/if}}
                 
             </td>
-            <td>
+            <td col-md-9>
                 Genres:
                 {{#genres}}
                 <a class="btn btn-default" href="#/books-result?genre={{this}}">{{this}}</a>
@@ -83,26 +85,55 @@
                     </h3>
                 </div>
             </td>
-            <td class="col-md-9">
+            <td class="col-md-4">
                 <div class="review-wrapper"> 
                     <h2>Reviews:</h2>
                     {{#if reviews}}
                     {{#reviews}}
-                    <div>
-                    <strong><a href="">{{this.nickName}}:</a></strong>        
-                    <h3>{{this.review}}</h3>
-                    <br>
-                    <br>
+                    <div class="single-review-wrapper">
+                        <strong><a href="">{{this.nickName}}:</a></strong>        
+                        <p>{{this.review}}</p>
                     </div>
                     {{/reviews}}
                     {{else}}
                     <h3>Yours will be the first.</h3>
                     {{/if}}
+                    
+                </div>
+            </td>
+            <td class="col-md-5">
+                {{#if status}}
+                <div class="review-adder">
                     <div class="form-group">
-                    <textarea type="text" class="form-control"  placeholder="Write something about it..."></textarea>
-                    <button class="form-control">Send</button>
+                        <textarea id="tb-review" type="text" class="form-control" rows="10" placeholder="Write something about it..."></textarea>
+                        <br>
+                        <div class="review-rating-adder">
+                        <h4>Rate it: 
+                                <button data-id="1" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>
+                                <button  data-id="2" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>
+                                <button  data-id="3" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>
+                                <button  data-id="4" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>
+                                <button  data-id="5" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>                     
+                            </button>
+                        </h4>
                     </div>
+                        <br>
+                        <button id="btn-review-send" class="review-send btn btn-primary form-control">Send</button>
                     </div>
+                </div>
+
+                {{/if}}
+                
             </td>
         </tr>
     </table>

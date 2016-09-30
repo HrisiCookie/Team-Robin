@@ -191,6 +191,30 @@ class BooksModel {
 
         return promise;
     }
+
+    addReview(bookId, review, rating) {
+        let promise = new Promise((resolve, reject) => {
+            let url = 'api/mybooks/review';
+            let data = {
+                bookId,
+                rating,
+                review
+            };
+
+            userModel.getLoggedHeader()
+                .then((headers) => {
+                    let options = { data, headers };
+                    return requester.put(url, options);
+                })
+                .then((res) => {
+                    resolve(res);
+                }, (err) => {
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
 }
 
 let booksModel = new BooksModel();
