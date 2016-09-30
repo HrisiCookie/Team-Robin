@@ -61,6 +61,8 @@ class UserModel {
     getLoggedHeader() {
         return Promise.resolve()
             .then(() => {
+                let a = localStorage.getItem(STORAGE_AUTH_KEY);
+                debugger;
                 return {
                     'x-auth-key': localStorage.getItem(STORAGE_AUTH_KEY)
                 };

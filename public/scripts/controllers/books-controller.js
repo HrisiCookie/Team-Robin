@@ -22,6 +22,36 @@ function getStatusOfBook(currentUserInfo, book) {
     }
 }
 
+function addNickNamesToReviews(book) {
+    let reviews = book.reviews;
+
+    reviews = reviews.map((review) => {
+        let nickName;
+        userModel.getNickNameById(review.userId)
+            .then((resNickName) => {
+                nickName = resNickName;
+                review.nickName = nickName;
+            });
+    });
+
+    return book;
+}
+
+function convertRatingToArray(book) {
+    let rating = book.rating;
+    if (rating === 0) {
+        book.rating = undefined;
+    }
+    else {
+        book.rating = [];
+        for (let i = 0; i < rating; i += 1) {
+            book.rating.push(i);
+        }
+    }
+
+    return book;
+}
+
 class BooksController {
     getBooks(context, selector) {
         let page = 0;
@@ -100,18 +130,12 @@ class BooksController {
     singleBook(context, selector) {
         let book, isLoggedIn;
         booksModel.getSingleBookInfo(context.params.id)
-            .then((res) => {
-                let reviews = res.reviews;
+            .then((resBook) => {
+                addNickNamesToReviews(resBook);
+                convertRatingToArray(resBook);
+                book = resBook;
+
                 isLoggedIn = $('body').hasClass('logged');
-                reviews = reviews.map((review) => {
-                    let nickName;
-                    userModel.getNickNameById(review.userId)
-                        .then((resNickName) => {
-                            nickName = resNickName;
-                            review.nickName = nickName;
-                        });
-                });
-                book = res;
                 if (isLoggedIn) {
                     return userModel.getCurrentUserInfo();
                 }
@@ -124,24 +148,11 @@ class BooksController {
                 return pageView.singleBookPage(selector, book);
             })
             .then(() => {
-                $('#btn-add-rating').on('click', function () {
-                    let tbRating = $(this).prev();
-                    let rating = +tbRating.val();
-                    if ((typeof rating !== 'number') || rating < 1 || rating > 5) {
-                        notificator.error('Invalid Rating');
-                    }
-                    else {
-                        let bookId = $(this).attr('data-id');
-                        booksModel.sendRating(bookId, rating)
-                            .then((res) => {
-                                notificator.success('Rating added successfully');
-                                $('#rating').html(rating);
-                            }, (err) => {
-                                notificator.error(JSON.parse(err.responseText).message);
-                            });
-                    }
-
-                    tbRating.val('');
+                $('.rating-adder').on('click', '.btn-add-rating', function(){
+                    let rating = $(this).attr('data-id');
+                    let bookId = $('#book-title').attr('data-id');
+                    booksModel.sendRating(bookId, rating);
+                    location.reload();
                 });
             });
     }

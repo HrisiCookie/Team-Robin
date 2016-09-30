@@ -1,5 +1,5 @@
 <div id="book-wrapper">
-    <h1 data-id={{_id}}>{{{title}}}</h1>
+    <h1 id="book-title" data-id={{_id}}>{{{title}}}</h1>
     <table class="table">
         <tr>
             <td col-md-6>
@@ -12,16 +12,45 @@
         <tr>
             <td>
                 <h4>Author: <strong>{{author}}</strong></h4>
-                <h4>Rating: <p id="rating"><strong>{{rating}}</strong></p></h4>
-                <p>Pages: <strong>{{pages}}</strong></p>
+                <h4>Pages: 
+                    {{#if pages}}
+                        <strong>{{pages}}</strong>                    
+                    {{else}}
+                        n/a
+                    {{/if}}
+                </h4>                
+                <h4>Rating: 
+                    {{#if rating}}
+                        {{#each rating}}
+                        <span class="star glyphicon glyphicon-star"></span>
+                        {{/each}}
+                    {{else}}
+                        No rating
+                    {{/if}}
+                </h4>
+                {{#if status}}
+                    <div class="rating-adder">
+                        <h4>Rate it: 
+                                <button data-id="1" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>
+                                <button  data-id="2" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>
+                                <button  data-id="3" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>
+                                <button  data-id="4" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>
+                                <button  data-id="5" class="btn-star btn-add-rating">
+                                    <span class="star glyphicon glyphicon-star"></span>
+                                </button>                     
+                            </button>
+                        </h4>
+                    </div>
+                {{/if}}
                 
-                <form class="form-inline">
-                <div class="form-group">
-                    <label for="tb-rating">Rate it</label>
-                    <input type="number" placeholder="1 - 5" id="tb-rating" class="form-control">
-                    <button data-id="{{_id}}" id="btn-add-rating" class="form-control btn btn-primary">Send rate</button>
-                </div>
-                </form>
             </td>
             <td>
                 Genres:

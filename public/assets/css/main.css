@@ -129,3 +129,15 @@ ul {
         min-width: 500px;
     }
 }
+
+.star{
+    color: #edd20b;
+}
+
+.btn-star{
+    border: none;
+}
+
+.btn-star :hover{
+    background-color: #f7f6ef;
+}
