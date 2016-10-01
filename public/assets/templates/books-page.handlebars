@@ -6,10 +6,24 @@
             <td class="col-md-3">
                 <img class="img-responsive" src="{{coverUrl}}">
             </td>
-            <td class="col-md-3">
-                Ttitle: <a href="#/books/{{_id}}">{{{title}}}</a>
-            </td class="col-md-3">
-            <td>Rating: {{rating}}</td>
+            <td> 
+                <h2>Title: <a href=""> {{title}}</a></h2>
+                <h3>Author: <a href="">{{author}}</a></h3>
+                <h3>Rating: 
+                    {{#if rating}}
+                    {{#each rating}}
+                        <span class="star glyphicon glyphicon-star"></span>
+                    {{/each}}
+                    {{else}}
+                        No rating
+                    {{/if}}
+                </h3>
+                <h3>Pages: {{pages}}</h3>
+                <h3>Genres:</h3>
+                {{#genres}}
+                <a class="btn btn-default" href="#/books-result?genre={{this}}">{{this}}</a>
+                {{/genres}}
+            </td>
         </tr>
         {{/books}}
     </table>  

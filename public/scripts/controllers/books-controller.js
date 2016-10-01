@@ -59,6 +59,7 @@ class BooksController {
                     if (!book.coverUrl || !isNaN(coverAsNumber)) {
                         book.coverUrl = DEFAULT_BOOK_COVER_URL;
                     }
+                    convertRatingToArray(book);
                     return book;
                 });
                 let currPage = +context.params.page;
@@ -196,7 +197,7 @@ class BooksController {
             page: 1,
             size: VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT
         };
-        
+
         booksModel.getBooks(params)
             .then((books) => {
                 let genrePattern = context.params.genre.toLowerCase();
