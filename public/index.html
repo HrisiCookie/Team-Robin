@@ -7,29 +7,40 @@
     <link href="./assets/images/bookcase.ico" rel="icon">
     <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="./assets/bootstrap-social-gh-pages/bootstrap-social.css" rel="stylesheet">
+    <link href="./assets/css/flatly-bootstrap.min.css" rel="stylesheet">
     <link href="./bower_components/toastr/toastr.css" rel="stylesheet">
     <link href="./assets/fonts/adamina/Adamina-Regular.ttf" rel="stylesheet">
     <link href="./assets/fonts/spring-time-personal-use/Spring Time Personal Use/SpringTime Personal Use.ttf" rel="stylesheet">
     <link href="./assets/css/logged-in-out.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Irish+Grover" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Architects+Daughter" />
     <link href="./assets/css/main.css" rel="stylesheet">
 </head>
 
 <body id="page">
     <div id="root" class="container">
         <header class="">
-            <img src="./assets/images/bookcase.ico" width="42" height="42"/>
-            <a href="#/home"><h1 class="page-header">myBooks</h1></a>
-            <nav class="navbar navbar-default">
-                <ul class="nav navbar-nav col-md-9">
-                    <li><a class="nav-li " href="#/home">Home</a></li>
-                    <li><a class="nav-li" href="#/books?page=1&size=10">Books</a></li>
-                    <li><a class="nav-li" href="#/genres">Genres</a></li>
-                    <li id="my-profile" class="nav-li hidden-when-not-logged-in"><a href="#/profile">My Profile</a></li>
-                    <li id="add-book" class="nav-li hidden-when-not-logged-in"><a href="#/add-book">Add new book</a></li>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="navbar-header">
+                    <button class="btn btn-success navbar-toggle"
+                            data-toggle="collapse"
+                            data-target=".navbar-collapse"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                        <img src="./assets/images/bookcase.ico" width="42" height="42"/>
+                        <a href="#/home"><h1 id="my-books">myBooks</h1></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                    <li class="nav active"><a href="#/home">Home</a></li>
+                    <li class="nav"><a href="#/books?page=1&size=10">Books</a></li>
+                    <li class="nav"><a href="#/genres">Genres</a></li>
+                    <li id="my-profile" class="nav hidden-when-not-logged-in"><a href="#/profile">My Profile</a></li>
+                    <li id="add-book" class="nav hidden-when-not-logged-in"><a href="#/add-book">Add new book</a></li>
+                    <a href="#/login" id="login" class="nav navbar-right btn btn-primary btn-lg visible-when-not-logged-in">Sign In</a>
+                    <a href="#/register" id="register" class="nav navbar-right btn btn-success btn-lg visible-when-not-logged-in">Sign Up</a>
+                    <a href="#/logout" id="logout" class="nav navbar-right btn btn-danger btn-lg hidden-when-not-logged-in">Sign Out</a>
                 </ul>
-                <a href="#/login" id="login" class="btn btn-primary visible-when-not-logged-in">Sign In</a>
-                <a href="#/register" id="register" class="btn btn-success visible-when-not-logged-in">Sign Up</a>
-                <a href="#/logout" id="logout" class="btn btn-danger hidden-when-not-logged-in">Sign Out</a>
+                </div>
+                
             </nav>
             <div id="search" class="row">
                 <div class="col-md-12">
@@ -38,7 +49,7 @@
                         <div class="input-group-btn">
                             <div class="btn-group" role="group">
                                 <div class="dropdown dropdown-lg">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                                     <div class="dropdown-menu dropdown-menu-right" role="menu">
                                         <form class="form-horizontal" role="form">
                                         <div class="form-group">
@@ -54,7 +65,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                             </div>
                         </div>
                     </div>
@@ -62,50 +73,50 @@
             </div>
         </header>
         <main>
-            <div id="content" class="col-md-12">
+            <div id="content" class="container">
                 <h1>All time best sellers ...</h1>
                 <div class="row">
-                    <a href="https://en.wikipedia.org/wiki/Don_Quixote"><img class="col-md-3" src="../assets/images/El_ingenioso_hidalgo_don_Quijote_de_la_Mancha.jpg" alt="Don Quihote de la Mancha" width="300" height="400"></a>
+                    <a href="https://en.wikipedia.org/wiki/Don_Quixote"><img class="col-md-3 col-md-offset-1" src="../assets/images/El_ingenioso_hidalgo_don_Quijote_de_la_Mancha.jpg" alt="Don Quihote de la Mancha" width="300" height="400"></a>
                     <a href="https://en.wikipedia.org/wiki/A_Tale_of_Two_Cities"><img class="col-md-3" src="../assets/images/Tales_serial.jpg" alt="Tale of two cities" width="300" height="400"></a>
                     <a href="https://en.wikipedia.org/wiki/The_Alchemist_(novel)"><img class="col-md-3" src="../assets/images/TheAlchemist.jpg" alt="The Alchemist" width="300" height="400"></a>
                     <a href="https://en.wikipedia.org/wiki/The_Little_Prince"><img class="col-md-3" src="../assets/images/Littleprince.JPG" alt="Little prince" width="300" height="400"></a>
                 </div><br>
                 <div class="row">
-                    <a href="https://en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher%27s_Stone"><img class="col-md-3" src="../assets/images/Harry_Potter_and_the_Philosopher's_Stone_Book_Cover.jpg" alt="Harry Potter and the Philosopher's Stone" width="300" height="400"></a>
+                    <a href="https://en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher%27s_Stone"><img class="col-md-3 col-md-offset-1" src="../assets/images/Harry_Potter_and_the_Philosopher's_Stone_Book_Cover.jpg" alt="Harry Potter and the Philosopher's Stone" width="300" height="400"></a>
                     <a href="https://en.wikipedia.org/wiki/The_Hobbit"><img class="col-md-3" src="../assets/images/220px-TheHobbit_FirstEdition.jpg" alt="The Hobbit" width="300" height="400"></a>
                     <a href="https://en.wikipedia.org/wiki/And_Then_There_Were_None"><img class="col-md-3" src="../assets/images/And_Then_There_Were_None_First_Edition_Cover_1939.jpg" alt="And Then There Were None" width="300" height="400"></a>
                     <a href="https://en.wikipedia.org/wiki/Dream_of_the_Red_Chamber"><img class="col-md-3" src="../assets/images/180px-Hongloumeng2.jpg" alt="Dream of the Red Chamber" width="300" height="400"></a>
                 </div><br>
                 <div class="row">
-                    <a href="https://en.wikipedia.org/wiki/Alice%27s_Adventures_in_Wonderland"><img class="col-md-3" src="../assets/images/Alice_in_Wonderland,_cover_1865.jpg" alt="Alice's Adventures in Wonderland" width="300" height="400"></a>
+                    <a href="https://en.wikipedia.org/wiki/Alice%27s_Adventures_in_Wonderland"><img class="col-md-3 col-md-offset-1" src="../assets/images/Alice_in_Wonderland,_cover_1865.jpg" alt="Alice's Adventures in Wonderland" width="300" height="400"></a>
                     <a href="https://en.wikipedia.org/wiki/The_Lion,_the_Witch_and_the_Wardrobe"><img class="col-md-3" src="../assets/images/220px-TheLionWitchWardrobe(1stEd).jpg" alt="The Lion, the Witch and the Wardrobe" width="300" height="400"></a>
                     <a href="https://en.wikipedia.org/wiki/She:_A_History_of_Adventure"><img class="col-md-3" src="../assets/images/She_title_page.jpg" alt="She: A History of Adventure" width="300" height="400"></a>
                     <a href="https://en.wikipedia.org/wiki/The_Da_Vinci_Code"><img class="col-md-3" src="../assets/images/220px-DaVinciCode.jpg" alt="The Da Vinci Code" width="300" height="400"></a>
                 </div><br>
             </div>
         </main>
-        <footer>
-            <div id="foot">
-                <a href="https://telerikacademy.com/">
-                    <img src="./assets/images/telerik-academy-logo.jpg" alt="telerik academy logo"  width="320" height="60">
-                </a>
+        <footer class="footer">
+            <div id="foot" class="container-fluid">
+                <!--<a href="https://telerikacademy.com/">
+                    <img src="./assets/images/telerik-academy-logo.jpg" alt="telerik academy logo">
+                </a>-->
                 <a id="spa" href="https://en.wikipedia.org/wiki/Single-page_application">
-                    <h2 class="spa">JavaScript Applications - Single-page application</h2>
-                </a><br><br>
+                    <p class="spa">JavaScript Applications - Single-page application</p>
+                </a>
                 <a class="github-btn" href="https://github.com/HrisiCookie/Team-Robin">
                     <img id="github-img" src="./assets/images/github.ico" width="42" height="42">
                 </a>
-                <a class="foot-center" href="https://github.com/HrisiCookie/Team-Robin"><h2>Team "Robin"</h2></a>
-                <h5>( Hrisi_Cookie - Христина Байлова, 
-                nProdanov - Николай Проданов,
-                Absend - Атанас Папучаров,
-                martinyotov - Мартин Йотов,
-                DKatsarski - Димитър Кацарски )
-                </h5><br>
-                <h3>Resources:</h3>
+                <a class="foot-center" href="https://github.com/HrisiCookie/Team-Robin"><p>Team "Robin"</p></a>
+                <p>( Hrisi_Cookie, 
+                nProdanov,
+                Absend,
+                martinyotov,
+                DKatsarski)
+                </p>
+                <!--<p>Resources:</p>
                 <ul class="foot-center">
                     <li>
-                        <h4>Client side:</h4> 
+                        <p>Client side:</p> 
                         <div class="resource-link">
                             <a href="http://sammyjs.org/">sammy</a>, 
                             <a href="https://jquery.com/">jquery</a>, 
@@ -124,13 +135,13 @@
                         </div>
                     </li><br>
                     <li> 
-                        <h4>Testing:</h4>
+                        <p>Testing:</p>
                         <div class="resource-link">
                             <a href="https://mochajs.org/">mocha</a>, 
                             <a href="http://chaijs.com/">chai</a>
                         </div>
                     </li><br>
-                </ul>
+                </ul>-->
             </div>
             <div id="copyright">
                 <p>copyright&#169;2016</p>

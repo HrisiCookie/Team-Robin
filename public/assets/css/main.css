@@ -7,16 +7,20 @@ main {
     font-family: SpringTime;
 }
 
-footer {
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    background-color: whitesmoke;
-    margin-bottom: 2px;
+main h1 {
+    margin-left: 80px;
 }
 
 #foot {
-    padding: 2%;
+    text-align: center;
+    margin-top: 20px;
+    
 }
+
+/*#foot a img {
+    width: 70px;
+    height: 35px;
+}*/
 
 #spa {
     display: inline-block;
@@ -24,8 +28,8 @@ footer {
 }
 
 .spa {
-    font-size: 2.5em;
-    font-family: SpringTime;
+    font-size: 20px;
+    font-family: "Architects Daughter";
     color: green;
 }
 
@@ -54,6 +58,12 @@ footer {
 h1 {
     color: darkslateblue;
     display: inline-block;
+    font-family: "Architects Daughter";
+	font-size: 36px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
 }
 
 h2 {
@@ -62,6 +72,25 @@ h2 {
 
 h5 {
     color: darkmagenta;
+}
+
+#my-books {
+    font-family: "Irish Grover";
+	font-size: 50px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+    color: white;
+}
+
+a {
+    font-family: "Architects Daughter";
+	font-size: 20px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
 }
 
 #copyright {
@@ -148,4 +177,30 @@ ul {
 
 .review-rating-adder .clicked{
     background-color: green;
+}
+
+.form-group {
+    margin-top: 100px;
+}
+
+#search {
+    margin-top: 80px;
+    margin-bottom: 10px;
+}
+
+#login, #logout {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+#register {
+     margin-top: 10px;
+     padding: 5px;
+}
+
+#content .row img {
+    width: 250px;;
+    height: 300px;
 }
