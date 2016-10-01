@@ -4,6 +4,7 @@ import { pageView } from '../view/page-view.js';
 import { notificator } from '../helpers/notificator.js';
 
 const DEFAULT_BOOK_COVER_URL = 'http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg';
+const VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT = 1000000000;
 
 function getStatusOfBook(currentUserInfo, book) {
     let booksToRead = currentUserInfo.booksToRead || [];
@@ -191,7 +192,12 @@ class BooksController {
     }
 
     resultGenreBooks(context, selector) {
-        booksModel.getBooks()
+        let params = { 
+            page: 1,
+            size: VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT
+        };
+        
+        booksModel.getBooks(params)
             .then((books) => {
                 let genrePattern = context.params.genre.toLowerCase();
                 let filteredBooks = books.filter((book) => {
