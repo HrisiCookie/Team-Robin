@@ -68,17 +68,13 @@ let $page = $('#page');
         });
 
         this.get('#/add-book', (context) => {
-            usersController.isUserLoggedIn()
-                .then((isLogged) => {
-                    if (!isLogged) {
-                        context.redirect('#/home');
-                    } else {
-                        $('#search').hide();
-                        $('footer').hide();
-                        booksController.addBook(context, '#content');
-                    }
-                });
-
+            if ($('#page').hasClass('logged-in')) {
+                $('#search').hide();
+                $('footer').hide();
+                booksController.addBook(context, '#content');
+            } else {
+                context.redirect('#/home');
+            }
         });
 
         this.get('#/books-result', (context) => {
