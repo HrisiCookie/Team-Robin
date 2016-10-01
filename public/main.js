@@ -82,7 +82,7 @@ let $page = $('#page');
         });
 
         this.get('#/books-result', (context) => {
-            booksController.resultGenreBooks(context, '#content');
+            booksController.resultBooks(context, '#content');
         });
 
         this.get('#/books/:id', (context) => {

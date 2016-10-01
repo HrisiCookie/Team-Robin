@@ -50,6 +50,81 @@ function convertRatingToArray(book) {
     return book;
 }
 
+function resultGenreBooks(context, selector, params) {
+    booksModel.getBooks(params)
+        .then((books) => {
+            let genrePattern = context.params.genre.toLowerCase();
+            let filteredBooks = books.filter((book) => {
+                let genres = book.genres || [];
+                if (genres.some((gen) => { return gen.toLowerCase() === genrePattern; })) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+
+            filteredBooks = filteredBooks.map((book) => {
+                let coverAsNumber = parseInt(book.coverUrl);
+                if (!book.coverUrl || !isNaN(coverAsNumber)) {
+                    book.coverUrl = DEFAULT_BOOK_COVER_URL;
+                }
+                convertRatingToArray(book);
+                return book;
+            });
+
+            return {
+                filteredBooks,
+                pattern: context.params.genre
+            };
+        }, (err) => {
+            console.log(err);
+        })
+        .then((res) => {
+            return pageView.searchResultPage(selector, res);
+        })
+        .then();
+}
+
+function resultAuthorBooks(context, selector, params) {
+    booksModel.getBooks(params)
+        .then((books) => {
+
+            let authorPattern = context.params.author.toLowerCase();
+            let filteredBooks = books.filter((book) => {
+                if (!book.author) {
+                    book.author = 'n/a';
+                }
+                if (book.author.toLowerCase().indexOf(authorPattern) >= 0) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+
+            filteredBooks = filteredBooks.map((book) => {
+                let coverAsNumber = parseInt(book.coverUrl);
+                if (!book.coverUrl || !isNaN(coverAsNumber)) {
+                    book.coverUrl = DEFAULT_BOOK_COVER_URL;
+                }
+                convertRatingToArray(book);
+                return book;
+            });
+
+            return {
+                filteredBooks,
+                pattern: context.params.author
+            };
+        }, (err) => {
+            console.log(err);
+        })
+        .then((res) => {
+            return pageView.searchResultPage(selector, res);
+        })
+        .then();
+}
+
 class BooksController {
     getBooks(context, selector) {
         booksModel.getBooks(context.params)
@@ -65,7 +140,7 @@ class BooksController {
                 let currPage = +context.params.page;
                 let isFirstPage = currPage === 1;
                 let isLastPage = books.length < context.params.size;
-                let prevPage = isFirstPage ? currPage : currPage -1;
+                let prevPage = isFirstPage ? currPage : currPage - 1;
                 let nextPage = isLastPage ? currPage : currPage + 1;
                 let pageInfo = {
                     page: currPage,
@@ -192,46 +267,22 @@ class BooksController {
             });
     }
 
-    resultGenreBooks(context, selector) {
-        let params = { 
+    resultBooks(context, selector) {
+        let params = {
             page: 1,
             size: VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT
         };
 
-        booksModel.getBooks(params)
-            .then((books) => {
-                let genrePattern = context.params.genre.toLowerCase();
-                let filteredBooks = books.filter((book) => {
-                    let genres = book.genres || [];
-                    if (genres.some((gen) => { return gen.toLowerCase() === genrePattern; })) {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
-                });
-
-                filteredBooks = filteredBooks.map((book) => {
-                    let coverAsNumber = parseInt(book.coverUrl);
-                    if (!book.coverUrl || !isNaN(coverAsNumber)) {
-                        book.coverUrl = DEFAULT_BOOK_COVER_URL;
-                    }
-                    convertRatingToArray(book);
-                    return book;
-                });
-
-                return {
-                    filteredBooks,
-                    pattern: context.params.genre
-                };
-            }, (err) => {
-                console.log(err);
-            })
-            .then((res) => {
-                return pageView.searchResultPage(selector, res);
-            })
-            .then();
+        debugger;
+        if (context.params.author) {
+            resultAuthorBooks(context, selector, params);
+        }
+        else if (context.params.genre) {
+            resultGenreBooks(context, selector, params);
+        }
     }
+
+
 
     storeAllBooksCount() {
         booksModel.getAllBooksCount()

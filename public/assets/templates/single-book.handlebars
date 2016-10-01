@@ -1,19 +1,19 @@
 <div id="book-wrapper">
     <h1 id="book-title" data-id={{_id}}>{{{title}}}</h1>
         <div class="row">
-            <div col-md-6>
+            <div class="col-md-3">
                 <img class="img-responsive" src="{{coverUrl}}">
             </div>
-            <div col-md-6>
+            <div class="col-md-9">
                 <p>Summary: {{description}}</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <h4>Author: <sdivong>{{author}}</sdivong></h4>
+                <h4>Author: <a href="#/books-result?author={{author}}"> {{author}}</a></h4>
                 <h4>Pages: 
                     {{#if pages}}
-                        <sdivong>{{pages}}</sdivong>                    
+                        <strong>{{pages}}</strong>                    
                     {{else}}
                         n/a
                     {{/if}}
@@ -130,6 +130,5 @@
                 
             </div>
         </div>
-    </table>
     
 </div>
