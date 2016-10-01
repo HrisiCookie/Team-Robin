@@ -211,6 +211,15 @@ class BooksController {
                     }
                 });
 
+                filteredBooks = filteredBooks.map((book) => {
+                    let coverAsNumber = parseInt(book.coverUrl);
+                    if (!book.coverUrl || !isNaN(coverAsNumber)) {
+                        book.coverUrl = DEFAULT_BOOK_COVER_URL;
+                    }
+                    convertRatingToArray(book);
+                    return book;
+                });
+
                 return {
                     filteredBooks,
                     pattern: context.params.genre
