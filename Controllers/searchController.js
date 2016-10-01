@@ -51,7 +51,6 @@ var searchController = function (Book) {
 		});
 	};
 
-
 	return {
 		get: get
 	};

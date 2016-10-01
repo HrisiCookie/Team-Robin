@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.0.5",
+    "sinon": "^1.17.6",
     "systemjs": "^0.19.38",
     "systemjs-plugin-babel": "0.0.15"
   }
