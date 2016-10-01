@@ -14,22 +14,22 @@
     <link href="./assets/css/main.css" rel="stylesheet">
 </head>
 
-<body>
+<body id="page">
     <div id="root" class="container">
         <header class="">
             <img src="./assets/images/bookcase.ico" width="42" height="42"/>
             <a href="#/home"><h1 class="page-header">myBooks</h1></a>
             <nav class="navbar navbar-default">
                 <ul class="nav navbar-nav col-md-9">
-                    <li><a class="nav-li" href="#/home">Home</a></li>
+                    <li><a class="nav-li " href="#/home">Home</a></li>
                     <li><a class="nav-li" href="#/books">Books</a></li>
                     <li><a class="nav-li" href="#/genres">Genres</a></li>
-                    <li id="my-profile" class="nav-li logged-in"><a href="#/profile">My Profile</a></li>
-                    <li id="add-book" class="nav-li logged-in"><a href="#/add-book">Add new book</a></li>
+                    <li id="my-profile" class="nav-li hidden-when-not-logged-in"><a href="#/profile">My Profile</a></li>
+                    <li id="add-book" class="nav-li hidden-when-not-logged-in"><a href="#/add-book">Add new book</a></li>
                 </ul>
-                <a href="#/login" id="login" class="btn btn-primary">Sign In</a>
-                <a href="#/register" id="register" class="btn btn-success">Sign Up</a>
-                <a href="#/logout" id="logout" class="btn btn-danger logged-in">Sign Out</a>
+                <a href="#/login" id="login" class="btn btn-primary visible-when-not-logged-in">Sign In</a>
+                <a href="#/register" id="register" class="btn btn-success visible-when-not-logged-in">Sign Up</a>
+                <a href="#/logout" id="logout" class="btn btn-danger hidden-when-not-logged-in">Sign Out</a>
             </nav>
             <div id="search" class="row">
                 <div class="col-md-12">

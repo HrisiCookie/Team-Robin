@@ -1,3 +1,11 @@
-.hidden{
+#page .hidden-when-not-logged-in {
+    display: none;
+}
+
+#page.logged-in .hidden-when-not-logged-in {
+    display: initial;
+}
+
+#page.logged-in .visible-when-not-logged-in {
     display: none;
 }

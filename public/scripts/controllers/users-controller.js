@@ -16,12 +16,7 @@ class UserController {
                     };
                     userModel.login(user)
                         .then((res) => {
-                            $('body').addClass('logged');
-                            $('#login').addClass('hidden');
-                            $('#register').addClass('hidden');
-                            $('#logout').removeClass('hidden');
-                            $('#add-book').removeClass('hidden');
-                            $('#my-profile').removeClass('hidden');
+                            $('#page').addClass('logged-in');
                             notificator.success(`${res.username} signed in!`);
                             context.redirect('#/profile');
                         },
@@ -65,13 +60,7 @@ class UserController {
     logout(context) {
         userModel.logout()
             .then(() => {
-                $('body').removeClass('logged');
-                $('#login').removeClass('hidden');
-                $('#register').removeClass('hidden');
-                $('#logout').addClass('hidden');
-                $('#add-book').addClass('hidden');
-                $('#my-profile').addClass('hidden');
-                notificator.success('User signed out');
+                $('#page').removeClass('logged-in');
                 context.redirect('#/home');
             });
     }
@@ -117,15 +106,11 @@ class UserController {
     }
 
     isUserLoggedIn() {
-        return userModel.isLoggedIn()
-            .then((isLogged) => {
-                return isLogged;
-            });
+        return userModel.isLoggedIn();
     }
 
-    storeAllUsers(){
-        return userModel.getAllUsernames()
-            .then();
+    storeAllUsers() {
+        return userModel.getAllUsernames();
     }
 
 }

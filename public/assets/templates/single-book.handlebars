@@ -1,20 +1,19 @@
 <div id="book-wrapper">
     <h1 id="book-title" data-id={{_id}}>{{{title}}}</h1>
-    <table class="table">
-        <tr>
-            <td col-md-6>
+        <div class="row">
+            <div col-md-6>
                 <img class="img-responsive" src="{{coverUrl}}">
-            </td>
-            <td col-md-6>
+            </div>
+            <div col-md-6>
                 <p>Summary: {{description}}</p>
-            </td>
-        </tr>
-        <tr>
-            <td class="col-md-3">
-                <h4>Author: <strong>{{author}}</strong></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Author: <sdivong>{{author}}</sdivong></h4>
                 <h4>Pages: 
                     {{#if pages}}
-                        <strong>{{pages}}</strong>                    
+                        <sdivong>{{pages}}</sdivong>                    
                     {{else}}
                         n/a
                     {{/if}}
@@ -30,8 +29,7 @@
                         {{/if}}
                     </h4>
                 </div>
-                {{#if status}}
-                    <div class="rating-adder">
+                    <div class="rating-adder hidden-when-not-logged-in">
                         <h4>Rate it: 
                                 <button data-id="1" class="btn-star btn-add-rating">
                                     <span class="star glyphicon glyphicon-star"></span>
@@ -51,26 +49,25 @@
                             </button>
                         </h4>
                     </div>
-                    <div class="status-changer">
+                    <div class="status-changer hidden-when-not-logged-in">
                         <h4>Change status: <br>
                             <button data-status="want-to-read" class="btn btn-danger btn-change-status {{#if isToRead}}hidden{{/if}}">Want to Read</button>
                             <button data-status="currently-reading" class="btn btn-info btn-change-status {{#if isReading}}hidden{{/if}}">Currently reading</button>
                             <button data-status="read" class="btn btn-warning btn-change-status {{#if isRead}}hidden{{/if}}">Already read</button>
                         </h4>
                     </div>
-                {{/if}}
                 
-            </td>
-            <td col-md-9>
+            </div>
+            <div col-md-9>
                 Genres:
                 {{#genres}}
                 <a class="btn btn-default" href="#/books-result?genre={{this}}">{{this}}</a>
                 {{/genres}}
-            </td>
-        </tr>
-        <tr>
-            <td class="col-md-3">
-                <div class="status-wrapper">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="status-wrapper hidden-when-not-logged-in">
                     <h2>Status:</h2>
                     <h3>
                         {{#if isToRead}}
@@ -84,14 +81,14 @@
                         {{/if}}
                     </h3>
                 </div>
-            </td>
-            <td class="col-md-4">
+            </div>
+            <div class="col-md-4">
                 <div class="review-wrapper"> 
                     <h2>Reviews:</h2>
                     {{#if reviews}}
                     {{#reviews}}
                     <div class="single-review-wrapper">
-                        <strong><a href="">{{this.nickName}}:</a></strong>        
+                        <sdivong><a href="">{{this.nickName}}:</a></sdivong>        
                         <p>{{this.review}}</p>
                     </div>
                     {{/reviews}}
@@ -100,10 +97,9 @@
                     {{/if}}
                     
                 </div>
-            </td>
-            <td class="col-md-5">
-                {{#if status}}
-                <div class="review-adder">
+            </div>
+            <div class="col-md-5">
+                <div class="review-adder hidden-when-not-logged-in">
                     <div class="form-group">
                         <textarea id="tb-review" type="text" class="form-control" rows="10" placeholder="Write something about it..."></textarea>
                         <br>
@@ -131,11 +127,9 @@
                         <button id="btn-review-send" class="review-send btn btn-primary form-control">Send</button>
                     </div>
                 </div>
-
-                {{/if}}
                 
-            </td>
-        </tr>
+            </div>
+        </div>
     </table>
     
 </div>
