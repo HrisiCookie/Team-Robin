@@ -110,14 +110,6 @@ class BooksModel {
 
     getSingleBookInfo(bookId) {
         let promise = new Promise((resolve, reject) => {
-            if (localStorage.getItem(BOOKS_STORAGE)) {
-                let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
-                let bookToReturn = books.find((book) => {
-                    return bookId === book._id;
-                });
-                resolve(bookToReturn);
-                return;
-            }
 
             let url = `api/books/${bookId}`;
             requester.get(url)

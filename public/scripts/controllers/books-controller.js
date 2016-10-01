@@ -133,7 +133,7 @@ class BooksController {
 
                 book = resBook;
 
-                isLoggedIn = $('body').hasClass('logged');
+                isLoggedIn = $('#page').hasClass('logged-in');
                 if (isLoggedIn) {
                     return userModel.getCurrentUserInfo();
                 }
@@ -170,10 +170,8 @@ class BooksController {
 
                 $('.review-rating-adder').on('click', '.btn-add-rating', function () {
                     let $this = $(this);
-                    debugger;
                     let addRatingBtns = $('.review-rating-adder .btn-add-rating').get();
                     addRatingBtns.forEach((btn)=>{
-                        debugger;
                         let $btn = $(btn);
                         if($btn.hasClass('clicked')){
                             $btn.removeClass('clicked');
@@ -186,7 +184,6 @@ class BooksController {
                 $('#btn-review-send').on('click', function () {
                     let bookId = $('#book-title').attr('data-id');
                     let review = $('#tb-review').val();
-                    debugger;
                     let rating = +$('.review-rating-adder').attr('data-rating');
                     if (typeof rating !== 'number') {
                         notificator.error('Choose rating [1-5]');
