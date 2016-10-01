@@ -16,14 +16,6 @@ function setHtmlWithCompiledData(selector, data, templateName) {
         });
 }
 
-function appendToHtmlCompiledData(selector, data, templateName) {
-    let selectedItem = $(selector);
-    return templater.get(templateName)
-        .then((template) => {
-            selectedItem.append(template(data));
-        });
-}
-
 class PageView {
 
     homePage(selector) {
@@ -38,38 +30,42 @@ class PageView {
         return loadRawTemplate(selector, 'register');
     }
 
-    booksPage(selector) {
-        return loadRawTemplate(selector, 'books-page');
+    booksPage(selector, books, pageInfo) {
+        let data = {
+            books,
+            page: pageInfo.page,
+            isFirstPage: pageInfo.isFirstPage,
+            isLastPage: pageInfo.isLastPage,
+            prevPage: pageInfo.prevPage,
+            nextPage: pageInfo.nextPage
+        };
+
+        return setHtmlWithCompiledData(selector, data, 'books-page');
     }
 
-    loadBooks(selector, books){
-        let data = { books };
-        return appendToHtmlCompiledData(selector, data, 'load-more-books');
-    }
-
-    profilePage(selector){
+    profilePage(selector) {
         let data = { username: localStorage.getItem('STORAGE_USERNAME') };
         return setHtmlWithCompiledData(selector, data, 'profile');
     }
 
-    newsfeed(selector, news){
+    newsfeed(selector, news) {
         let data = { news };
         return setHtmlWithCompiledData(selector, data, 'newsfeed');
     }
 
-    addBookPage(selector){
+    addBookPage(selector) {
         return loadRawTemplate(selector, 'add-book-page');
     }
 
-    singleBookPage(selector, book){
+    singleBookPage(selector, book) {
         return setHtmlWithCompiledData(selector, book, 'single-book');
     }
 
-    genresPage(selector, genres){
+    genresPage(selector, genres) {
         return setHtmlWithCompiledData(selector, genres, 'genres-page');
     }
 
-    searchResultPage(selector, options){
+    searchResultPage(selector, options) {
         return setHtmlWithCompiledData(selector, options, 'search-result-page');
     }
 

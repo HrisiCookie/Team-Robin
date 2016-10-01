@@ -51,39 +51,28 @@ function convertRatingToArray(book) {
 
 class BooksController {
     getBooks(context, selector) {
-        let page = 0;
-
-        booksModel.getFirstBooks(page)
-            .then((res) => {
-                let coveredBooks = res.map((book) => {
+        booksModel.getBooks(context.params)
+            .then((books) => {
+                let coveredBooks = books.map((book) => {
                     let coverAsNumber = parseInt(book.coverUrl);
                     if (!book.coverUrl || !isNaN(coverAsNumber)) {
                         book.coverUrl = DEFAULT_BOOK_COVER_URL;
                     }
                     return book;
                 });
-                pageView.booksPage(selector);
-                pageView.loadBooks(selector, res);
-            }, (err) => {
-                console.log(err);
-            })
-            .then(() => {
-                $(window).scroll(function () {
-                    if (window.location.href === 'http://localhost:3000/#/books') {
-                        let curBottom = $(window).scrollTop() + $(window).height();
-                        let containerBottom = $(selector).offset().top + $(selector).height();
-                        if (curBottom >= containerBottom) {
-                            page += 1;
-                            booksModel.getMoreBooks(page)
-                                .then((res) => {
-                                    pageView.loadBooks(selector, res);
-                                });
-                        }
-                    }
-                    else {
-                        page = 0;
-                    }
-                });
+                let currPage = +context.params.page;
+                let isFirstPage = currPage === 1;
+                let isLastPage = books.length < context.params.size;
+                let prevPage = isFirstPage ? currPage : currPage -1;
+                let nextPage = isLastPage ? currPage : currPage + 1;
+                let pageInfo = {
+                    page: currPage,
+                    isFirstPage,
+                    isLastPage,
+                    prevPage,
+                    nextPage
+                };
+                pageView.booksPage(selector, books, pageInfo);
             });
     }
 
@@ -171,9 +160,9 @@ class BooksController {
                 $('.review-rating-adder').on('click', '.btn-add-rating', function () {
                     let $this = $(this);
                     let addRatingBtns = $('.review-rating-adder .btn-add-rating').get();
-                    addRatingBtns.forEach((btn)=>{
+                    addRatingBtns.forEach((btn) => {
                         let $btn = $(btn);
-                        if($btn.hasClass('clicked')){
+                        if ($btn.hasClass('clicked')) {
                             $btn.removeClass('clicked');
                         }
                     });
@@ -202,7 +191,7 @@ class BooksController {
     }
 
     resultGenreBooks(context, selector) {
-        booksModel.getAll()
+        booksModel.getBooks()
             .then((books) => {
                 let genrePattern = context.params.genre.toLowerCase();
                 let filteredBooks = books.filter((book) => {

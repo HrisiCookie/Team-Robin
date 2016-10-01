@@ -8,72 +8,12 @@ const VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT = 1000000000;
 
 class BooksModel {
 
-    getAll() {
+    getBooks(params) {
         let promise = new Promise((resolve, reject) => {
+            let url = `api/books?page=${params.page}&size=${params.size}`;
 
-            if (localStorage.getItem(BOOKS_STORAGE)) {
-                let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
-                resolve(books);
-                return;
-            }
-
-            let url = `api/books?page=1&size=${VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT}`;
             requester.get(url)
-                .then((res) => {
-                    localStorage.setItem(BOOKS_STORAGE, JSON.stringify(res));
-                    resolve(res);
-                }, (err) => {
-                    reject(err);
-                });
-        });
-
-        return promise;
-    }
-
-    getFirstBooks() {
-        let promise = new Promise((resolve, reject) => {
-            let start = 0,
-                end = 10;
-
-            if (localStorage.getItem(BOOKS_STORAGE)) {
-                let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
-                resolve(books.slice(start, end));
-                return;
-            }
-
-            let url = `api/books?page=1&size=${VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT}`;
-            requester.get(url)
-                .then((res) => {
-                    localStorage.setItem(BOOKS_STORAGE, JSON.stringify(res));
-                    resolve(res.slice(start, end));
-                }, (err) => {
-                    reject(err);
-                });
-        });
-
-        return promise;
-    }
-
-    getMoreBooks(page) {
-        let promise = new Promise((resolve, reject) => {
-            let size = 10;
-            let start = page * size,
-                end = start + size;
-
-            if (localStorage.getItem(BOOKS_STORAGE)) {
-                let books = JSON.parse(localStorage.getItem(BOOKS_STORAGE));
-                resolve(books.slice(start, end));
-                return;
-            }
-
-            let url = `api/books?page=1&size=${VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT}`;
-            requester.get(url)
-                .then((res) => {
-                    localStorage.setItem(BOOKS_STORAGE, JSON.stringify(res));
-                    resolve(res.slice(start, end));
-                }, (err) => {
-                    reject(err);
-                });
+                .then(resolve, reject);
         });
 
         return promise;

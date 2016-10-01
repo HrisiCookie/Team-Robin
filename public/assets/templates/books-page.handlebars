@@ -1,1 +1,20 @@
 <h1>Books Store</h1>
+<div class="table-responsive">
+    <table class="table">
+        {{#books}}
+        <tr class="row">
+            <td class="col-md-3">
+                <img class="img-responsive" src="{{coverUrl}}">
+            </td>
+            <td class="col-md-3">
+                Ttitle: <a href="#/books/{{_id}}">{{{title}}}</a>
+            </td class="col-md-3">
+            <td>Rating: {{rating}}</td>
+        </tr>
+        {{/books}}
+    </table>  
+</div>
+<div data-curr-page="{{page}}" class="pagination">
+<a href="#/books?page={{prevPage}}&size=10" class="btn btn-info {{#if isFirstPage}}disabled{{/if}}">Prev</a>
+<a href="#/books?page={{nextPage}}&size=10" class="btn btn-info {{#if isLastPage}}disabled{{/if}}">Next</a>
+</div>
