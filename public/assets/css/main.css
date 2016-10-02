@@ -217,7 +217,6 @@ ul {
 }
 
 .username-books h3 {
-    
     font-family: "Architects Daughter";
 	font-size: 50px;
 	font-style: normal;
@@ -237,4 +236,36 @@ ul {
 
 .btn-group button {
     font-family: "Architects Daughter";
+}
+
+.form-group span {
+    color: red;
+}
+
+.form-group h5 {
+    font-family: "Architects Daughter";
+	font-size: 22px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+    color: navy;
+}
+
+.form-group h4 {
+    float: left;
+}
+
+.form-group button {
+    font-family: "Architects Daughter";
+    font-size: 22px;
+    padding: 5px;
+    float: right;
+}
+
+.cat {
+    margin-top: 90px;
+    margin-left: 100px;
+    text-align: center;
+
 }
