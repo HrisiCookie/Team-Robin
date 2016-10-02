@@ -85,8 +85,8 @@ let $page = $('#page');
             booksController.singleBook(context, '#content');
         });
 
-        this.get('#/mybooks', (context)=>{
-            booksController.allMyBooks(context, '#content');
+        this.get('#/mybooks/:myBooksType', (context)=>{
+            booksController.myBooks(context, '#content');
         });
     });
 

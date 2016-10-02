@@ -9,17 +9,10 @@
             <td> 
                 <h2>Title: <a href="#/books/{{_id}}"> {{{title}}}</a></h2>
                 <h3>Author: <a href="#/books-result?author={{author}}">{{{author}}}</a></h3>
-               <h3>Rating: 
-                        {{#if rating}}
-                            {{#each rating}}
-                            <span class="star glyphicon glyphicon-star"></span>
-                            {{/each}}
-                        {{else}}
-                            No rating
-                        {{/if}}
-                    </h3>
+               
                 <h3>Pages: {{pages}}</h3>
                 <h3>Genres:</h3>
+                <h3>Status: {{status}}</h3>
                 {{#genres}}
                 <a class="btn btn-default" href="#/books-result?genre={{this}}">{{this}}</a>
                 {{/genres}}

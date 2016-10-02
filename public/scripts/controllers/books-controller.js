@@ -65,6 +65,56 @@ function makeStatusReadable(book) {
     return book;
 }
 
+function getReadyAllMyBooks(books) {
+    let coveredBooks = books
+        .map((book) => {
+            let coverAsNumber = parseInt(book.coverUrl);
+            if (!book.coverUrl || !isNaN(coverAsNumber)) {
+                book.coverUrl = DEFAULT_BOOK_COVER_URL;
+            }
+            makeStatusReadable(book);
+            return book;
+        })
+        .sort((a, b) => {
+            return a.status.toLowerCase().localeCompare(b.status.toLowerCase());
+        });
+
+    return coveredBooks;
+}
+
+function getReadyMyBooks(books) {
+    let coveredBooks = books
+        .map((book) => {
+            let coverAsNumber = parseInt(book.coverUrl);
+            if (!book.coverUrl || !isNaN(coverAsNumber)) {
+                book.coverUrl = DEFAULT_BOOK_COVER_URL;
+            }
+            if (book.ratings.length === 0) {
+                book.rating = 0;
+            }
+            else {
+                let ratingSum = 0;
+                book.ratings.forEach((rate) => {
+                    ratingSum += rate.rating;
+                });
+                book.rating = ratingSum / book.ratings.length;
+            }
+            
+            convertRatingToArray(book);
+            return book;
+        });
+
+    return coveredBooks;
+}
+
+function getPageHeader(param) {
+    switch (param) {
+        case 'to-read': return 'My books - Want to read';
+        case 'read': return 'My books - Already read';
+        default: return 'My books - Currently reading';
+    }
+}
+
 function resultGenreBooks(context, selector, params) {
     booksModel.getBooks(params)
         .then((books) => {
@@ -296,23 +346,20 @@ class BooksController {
         }
     }
 
-    allMyBooks(context, selector) {
-        booksModel.getAllMyBooks()
+    myBooks(context, selector) {
+        booksModel.getMyBooks(context.params.myBooksType)
             .then((books) => {
-                let coveredBooks = books
-                    .map((book) => {
-                        let coverAsNumber = parseInt(book.coverUrl);
-                        if (!book.coverUrl || !isNaN(coverAsNumber)) {
-                            book.coverUrl = DEFAULT_BOOK_COVER_URL;
-                        }
-                        makeStatusReadable(book);
-                        return book;
-                    })
-                    .sort((a, b) => {
-                        return a.status.toLowerCase().localeCompare(b.status.toLowerCase());
-                    });
-                    
-                pageView.allMyBooksPage(selector, coveredBooks, 'My Books All');
+                let coveredBooks;
+                switch (context.params.myBooksType) {
+                    case 'all': coveredBooks = getReadyAllMyBooks(books);
+                        pageView.allMyBooksPage(selector, coveredBooks, 'My Books All');
+                        break;
+                    default: coveredBooks = getReadyMyBooks(books);
+                        let pageHeader = getPageHeader(context.params.myBooksType);
+                        pageView.myBooksPage(selector, coveredBooks, pageHeader);
+                }
+
+
             });
     }
 

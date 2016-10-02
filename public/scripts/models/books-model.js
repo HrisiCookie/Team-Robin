@@ -124,9 +124,9 @@ class BooksModel {
         return promise;
     }
 
-    getAllMyBooks() {
+    getMyBooks(myBooksType) {
         let promise = new Promise((resolve, reject) => {
-            let url = 'api/mybooks/all';
+            let url = `api/mybooks/${myBooksType}`;
             userModel.getLoggedHeader()
                 .then((headers) => {
                     let options = { headers };

@@ -70,6 +70,11 @@ class PageView {
 
     allMyBooksPage(selector, books, myBooksPage){
         let data = { books, myBooksPage };
+        return setHtmlWithCompiledData(selector, data, 'my-books-all');
+    }
+
+    myBooksPage(selector, books, myBooksPage){
+        let data = {books, myBooksPage};
         return setHtmlWithCompiledData(selector, data, 'my-books');
     }
 
