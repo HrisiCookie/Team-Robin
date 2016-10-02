@@ -5,6 +5,7 @@ var express = require('express'),
 
 // db = mongoose.connect('mongodb://localhost/books');
 
+mongoose.Promise = global.Promise;
 var db = mongoose.connect('mongodb://team:123456@ds059692.mongolab.com:59692/bookapi');
 
 

@@ -80,6 +80,7 @@ a {
 	font-variant: normal;
 	font-weight: 500;
 	line-height: 15.4px;
+    text-decoration: none;
 }
 
 #copyright {
@@ -155,10 +156,6 @@ ul {
 .btn-star :hover{
     background-color: #f7f6ef;
 }
-
-/*.btn-change-status{
-    margin: 5px;
-}*/
 
 .review-wrapper {
     margin-top: 20px;
@@ -294,13 +291,18 @@ ul {
 }
 
 #book-wrapper p {
-    font-size: 18px;
+    font-size: 28px;
+}
+
+#book-wrapper a {
+    font-size: 22px;
 }
 
 #book-wrapper .row img {
     width: 300px;
     height: 400px;
 }
+
 #book-wrapper strong {
     font-family: "Architects Daughter";
     font-size: 22px;
@@ -310,9 +312,14 @@ ul {
     margin-bottom: 40px;
 }
 
-.status-changer h4, h2 {
+.status-changer h4, .status-wrapper h2 {
     margin-top: 30px;
     color: navy;
     font-family: "Architects Daughter";
     font-size: 32px;
 }
+
+.my-books-all {
+    margin-top: 80px;
+}
+

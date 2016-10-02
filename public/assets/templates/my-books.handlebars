@@ -1,3 +1,4 @@
+<div class="my-books-all">
 <h1>{{myBooksPage}}</h1>
 <div class="table-responsive">
     <table class="table">
@@ -21,10 +22,11 @@
                 <h3>Pages: {{pages}}</h3>
                 <h3>Genres:</h3>
                 {{#genres}}
-                <a class="btn btn-default" href="#/books-result?genre={{this}}">{{this}}</a>
+                    <a href="#/books-result?genre={{this}}">{{this}}</a>
                 {{/genres}}
             </td>
         </tr>
         {{/books}}
     </table>  
+</div>
 </div>
