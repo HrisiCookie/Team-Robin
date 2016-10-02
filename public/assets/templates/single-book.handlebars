@@ -1,11 +1,17 @@
 <div id="book-wrapper">
     <h1 id="book-title" data-id={{_id}}>{{{title}}}</h1>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <img class="img-responsive" src="{{coverUrl}}">
             </div>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <p>Summary: {{description}}</p>
+            </div>
+            <div class="col-md-2">
+                <p>Genres:</
+                {{#genres}}
+                    <a href="#/books-result?genre={{this}}">{{this}}  </a>
+                {{/genres}}
             </div>
         </div>
         <div class="row">
@@ -49,24 +55,22 @@
                             </button>
                         </h4>
                     </div>
-                    <div class="status-changer hidden-when-not-logged-in">
-                        <h4>Change status: <br>
-                            <button data-status="want-to-read" class="btn btn-danger btn-change-status {{#if isToRead}}hidden{{/if}}">Want to Read</button>
-                            <button data-status="currently-reading" class="btn btn-info btn-change-status {{#if isReading}}hidden{{/if}}">Currently reading</button>
-                            <button data-status="read" class="btn btn-warning btn-change-status {{#if isRead}}hidden{{/if}}">Already read</button>
-                        </h4>
-                    </div>
-                
-            </div>
-            <div col-md-9>
-                Genres:
-                {{#genres}}
-                <a class="btn btn-default" href="#/books-result?genre={{this}}">{{this}}</a>
-                {{/genres}}
+                    
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-8">
+                <div class="status-changer hidden-when-not-logged-in">
+                        <h4>Change status: <br>
+                        <div class="btn-group" role="group">
+                            <button type="radio" data-status="want-to-read" class="btn btn-success btn-change-status {{#if isToRead}}hidden{{/if}}">Want to Read</button>
+                            <button type="radio" data-status="currently-reading" class="btn btn-success btn-change-status {{#if isReading}}hidden{{/if}}">Currently reading</button>
+                            <button type="radio" data-status="read" class="btn btn-success btn-change-status {{#if isRead}}hidden{{/if}}">Already read</button>
+                        </div>
+                        </h4>
+                    </div>
+            </div>
+            <div class="col-md-4">
                 <div class="status-wrapper hidden-when-not-logged-in">
                     <h2>Status:</h2>
                     <h3>
@@ -82,7 +86,8 @@
                     </h3>
                 </div>
             </div>
-            <div class="col-md-4">
+        <div class="row">
+             <div class="col-md-6">
                 <div class="review-wrapper"> 
                     <h2>Reviews:</h2>
                     {{#if reviews}}
@@ -98,7 +103,7 @@
                     
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="review-adder hidden-when-not-logged-in">
                     <div class="form-group">
                         <textarea id="tb-review" type="text" class="form-control" rows="10" placeholder="Write something about it..."></textarea>
@@ -126,9 +131,10 @@
                         <br>
                         <button id="btn-review-send" class="review-send btn btn-primary form-control">Send</button>
                     </div>
-                </div>
-                
+                </div> 
             </div>
+        </div>
+           
         </div>
     
 </div>

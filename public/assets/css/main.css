@@ -156,12 +156,23 @@ ul {
     background-color: #f7f6ef;
 }
 
-.btn-change-status{
+/*.btn-change-status{
     margin: 5px;
+}*/
+
+.review-wrapper {
+    margin-top: 20px;
 }
 
 .single-review-wrapper{
-    border-bottom: 1px solid #8e8e8b;
+    border-bottom: 2px solid #dce4ec;
+    margin: 10px;
+}
+
+.single-review-wrapper a {
+    font-size: 22px;
+    padding: 15px;
+    padding-left: 0px;
 }
 
 .review-rating-adder .clicked{
@@ -229,8 +240,8 @@ ul {
     font-family: "Architects Daughter";
 }
 
-.form-group span {
-    color: red;
+.register-form .form-group span, .log-in-form .form-group span {
+    color: #d3040e;
 }
 
 .form-group h5 {
@@ -276,4 +287,32 @@ ul {
 
 .log-in-form .form-group, .register-form .form-group {
     margin-top: 50px;
+}
+
+.genre {
+    display: block
+}
+
+#book-wrapper p {
+    font-size: 18px;
+}
+
+#book-wrapper .row img {
+    width: 300px;
+    height: 400px;
+}
+#book-wrapper strong {
+    font-family: "Architects Daughter";
+    font-size: 22px;
+}
+
+#book-title {
+    margin-bottom: 40px;
+}
+
+.status-changer h4, h2 {
+    margin-top: 30px;
+    color: navy;
+    font-family: "Architects Daughter";
+    font-size: 32px;
 }
