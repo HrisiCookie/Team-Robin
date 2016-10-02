@@ -17,11 +17,6 @@ main h1 {
     
 }
 
-/*#foot a img {
-    width: 70px;
-    height: 35px;
-}*/
-
 #spa {
     display: inline-block;
     margin-left: 15px;
@@ -40,10 +35,6 @@ main h1 {
 #github-img:hover {
     border: 2px solid steelblue;
 }
-
-/*.page-header {
-    margin-top: 150px;
-}*/
 
 .resource-link {
     background-color: ghostwhite;
@@ -256,7 +247,7 @@ ul {
     float: left;
 }
 
-.form-group button {
+.form-group button, .log-in-form button {
     font-family: "Architects Daughter";
     font-size: 22px;
     padding: 5px;
@@ -267,5 +258,22 @@ ul {
     margin-top: 90px;
     margin-left: 100px;
     text-align: center;
+}
 
+.form-group label {
+    font-family: "Architects Daughter";
+    font-size: 26px;
+    font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+
+.log-in-form h1 {
+    margin-top: 100px;
+    text-align: left;
+}
+
+.log-in-form .form-group {
+    margin-top: 50px;
 }
