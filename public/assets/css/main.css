@@ -247,7 +247,7 @@ ul {
     float: left;
 }
 
-.form-group button, .log-in-form button {
+.form-group button, .log-in-form button, .register-form button {
     font-family: "Architects Daughter";
     font-size: 22px;
     padding: 5px;
@@ -269,11 +269,11 @@ ul {
 	line-height: 15.4px;
 }
 
-.log-in-form h1 {
+.log-in-form h1, .register-form h1 {
     margin-top: 100px;
     text-align: left;
 }
 
-.log-in-form .form-group {
+.log-in-form .form-group, .register-form .form-group {
     margin-top: 50px;
 }
