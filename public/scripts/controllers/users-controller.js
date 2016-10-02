@@ -2,6 +2,7 @@ import { templater } from '../helpers/templater.js';
 import { userModel } from '../models/user-model.js';
 import { pageView } from '../view/page-view.js';
 import { notificator } from '../helpers/notificator.js';
+import { booksModel } from '../models/books-model.js';
 
 
 class UserController {
@@ -66,10 +67,42 @@ class UserController {
     }
 
     profile(context, selector) {
-        pageView.profilePage(selector)
-            .then(userModel.newsfeed)
-            .then((res) => {
-                pageView.newsfeed('#newsfeed', res);
+        let currentUserInfo, bookToRead, bookCurrentlyReading, bookRead;
+        userModel.getCurrentUserInfo()
+            .then((resCurrentUserInfo) => {
+                currentUserInfo = resCurrentUserInfo;
+                
+                if (currentUserInfo.booksRead.length > 0) {
+                    return booksModel.getSingleBookInfo(currentUserInfo.booksRead[0]._id);
+                }
+            })
+            .then((resBookRead) => {
+                
+                bookRead = resBookRead;
+                if (currentUserInfo.booksCurrentlyReading.length > 0) {
+                    return booksModel.getSingleBookInfo(currentUserInfo.booksCurrentlyReading[0]._id);
+                }
+            })
+            .then((resBookCurrentlyReading) => {
+                bookCurrentlyReading = resBookCurrentlyReading;
+                if (currentUserInfo.booksToRead.length > 0) {
+                    return booksModel.getSingleBookInfo(currentUserInfo.booksToRead[0]._id);
+                }
+            })
+            .then((resBookToRead)=>{
+                bookToRead = resBookToRead;
+                let data = {
+                    currentUserInfo, 
+                    bookToRead, 
+                    bookCurrentlyReading,
+                    bookRead
+                };
+                
+                pageView.profilePage(selector, data);
+                return userModel.newsfeed();
+            })
+            .then((news)=>{
+                pageView.newsfeed('#newsfeed', news);
             })
             .then(() => {
                 // $('#newsfeed').on('click', '.like', function(){

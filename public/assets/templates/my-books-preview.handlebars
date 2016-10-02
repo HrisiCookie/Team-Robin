@@ -1,0 +1,9 @@
+<div class="row">
+    {{#if booksToRead}}
+    <div data-id="{{booksToRead._id}}">
+        <img src="{{booksToRead.coverUrl}}" class"responsive-image">
+        <h3>{{{booksToRead.title}}}</h3>
+    </div>
+    <a href="" class="btn btn-danger">View more</a>
+    {{/if}}
+</div>

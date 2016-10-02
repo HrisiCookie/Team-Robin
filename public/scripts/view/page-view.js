@@ -43,8 +43,7 @@ class PageView {
         return setHtmlWithCompiledData(selector, data, 'books-page');
     }
 
-    profilePage(selector) {
-        let data = { username: localStorage.getItem('STORAGE_USERNAME') };
+    profilePage(selector, data) {
         return setHtmlWithCompiledData(selector, data, 'profile');
     }
 

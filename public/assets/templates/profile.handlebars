@@ -1,23 +1,38 @@
 <!--<section id="sidebar" class="col-md-4">-->
     <div class="username-books">
-        <h3>{{username}}</h3>
-        <div class="table-responsive col-md-3">
+        <h3>{{currentUserInfo.nickname}}</h3>
+        <div class="table-responsive col-md-3 my-books-preview">
             <div class="table">
                 <div class="row">
-                    <div id="currently-reading">
-                        <a href="#/">Currently reading books</a>
+                    {{#if bookToRead}}
+                    <div class="preview">
+                        <strong><h4>Want to read</h4></strong>
+                        <img src="{{bookToRead.coverUrl}}" class"img-responsive">
+                        <a href="#/books/{{bookToRead._id}}">{{{bookToRead.title}}}</a>
                     </div>
-                </div>        
+                    <a href="" class="btn btn-danger">View more</a>
+                    {{/if}}
+                </div>     
                 <div class="row">
-                    <div id="read">
-                        <a href="#/">Already read books</a>
+                    {{#if bookCurrentlyReading}}
+                    <div class="preview">
+                        <strong><h4>Currently reading</h4> </strong>                       
+                        <img src="{{bookCurrentlyReading.coverUrl}}" class"img-responsive">
+                        <a href="#/books/{{bookCurrentlyReading._id}}">{{{bookCurrentlyReading.title}}}</a>
                     </div>
-                </div>
+                    <a href="" class="btn btn-danger">View more</a>
+                    {{/if}}
+                </div>     
                 <div class="row">
-                    <div id="want-to-read">
-                        <a href="#/">Want to read books</a>
+                    {{#if bookRead}}
+                    <div class="preview">
+                        <strong><h4>Already read</h4></strong>                                           
+                        <img src="{{bookRead.coverUrl}}" class"img-responsive">
+                        <a href="#/books/{{bookRead._id}}">{{{bookRead.title}}}</a>
                     </div>
-                </div>
+                    <a href="" class="btn btn-danger">View more</a>
+                    {{/if}}
+                </div>     
             </div>  
         </div>
     </div>
