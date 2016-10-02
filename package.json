@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js"
-    // "postinstall": "node ./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
