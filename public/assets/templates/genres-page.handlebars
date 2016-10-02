@@ -1,4 +1,9 @@
+<div class="row">
 <h1>Genres:</h1>
+</div>
 {{#each genres}}
-<button class="btn btn-default btn-lg genre">{{this}}</button>
+<div class="col-md-3">
+<a href="#/books-result?genre={{this}}">{{this}}</a>
+</div>
+<!--<button class="btn btn-default btn-lg genre">{{this}}</button>-->
 {{/each}}

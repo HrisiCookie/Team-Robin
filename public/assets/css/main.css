@@ -41,11 +41,9 @@ main h1 {
     border: 2px solid steelblue;
 }
 
-.page-header {
-    font-family: "SpringTime";
-    font-size: 40px;
-    color: steelblue;
-}
+/*.page-header {
+    margin-top: 150px;
+}*/
 
 .resource-link {
     background-color: ghostwhite;
@@ -203,4 +201,40 @@ ul {
 #content .row img {
     width: 250px;;
     height: 300px;
+}
+
+.table .col-md-3 img {
+    width: 250px;;
+    height: 300px;
+}
+
+.row h1 {
+    margin-bottom: 50px;
+}
+
+.username-books {
+    margin-top: 100px;
+}
+
+.username-books h3 {
+    
+    font-family: "Architects Daughter";
+	font-size: 50px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+
+#view-more {
+    margin-left: 145px;
+    
+}
+
+#view-more a {
+    padding: 7px;
+}
+
+.btn-group button {
+    font-family: "Architects Daughter";
 }
