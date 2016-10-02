@@ -68,6 +68,11 @@ class PageView {
         return setHtmlWithCompiledData(selector, options, 'search-result-page');
     }
 
+    allMyBooksPage(selector, books){
+        let data = { books };
+        return setHtmlWithCompiledData(selector, data, 'my-books-all');
+    }
+
 }
 
 let pageView = new PageView();

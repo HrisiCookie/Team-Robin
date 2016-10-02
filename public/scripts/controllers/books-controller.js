@@ -50,6 +50,21 @@ function convertRatingToArray(book) {
     return book;
 }
 
+function makeStatusReadable(book) {
+    let status = book.status;
+
+    switch (status) {
+        case 'want-to-read': book.status = 'Want to read';
+            break;
+        case 'currently-reading': book.status = 'Currently reading';
+            break;
+        case 'read': book.status = 'Already read';
+            break;
+    }
+
+    return book;
+}
+
 function resultGenreBooks(context, selector, params) {
     booksModel.getBooks(params)
         .then((books) => {
@@ -273,7 +288,6 @@ class BooksController {
             size: VERY_BIG_NUMBER_FOR_BOOKS_COUNT_FOR_OUR_SMALL_PROJECT
         };
 
-        debugger;
         if (context.params.author) {
             resultAuthorBooks(context, selector, params);
         }
@@ -282,7 +296,25 @@ class BooksController {
         }
     }
 
-
+    allMyBooks(context, selector) {
+        booksModel.getAllMyBooks()
+            .then((books) => {
+                let coveredBooks = books
+                    .map((book) => {
+                        let coverAsNumber = parseInt(book.coverUrl);
+                        if (!book.coverUrl || !isNaN(coverAsNumber)) {
+                            book.coverUrl = DEFAULT_BOOK_COVER_URL;
+                        }
+                        makeStatusReadable(book);
+                        return book;
+                    })
+                    .sort((a, b) => {
+                        return a.status.toLowerCase().localeCompare(b.status.toLowerCase());
+                    });
+                    
+                pageView.allMyBooksPage(selector, coveredBooks);
+            });
+    }
 
     storeAllBooksCount() {
         booksModel.getAllBooksCount()
