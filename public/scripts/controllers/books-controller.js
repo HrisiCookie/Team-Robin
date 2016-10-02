@@ -312,7 +312,7 @@ class BooksController {
                         return a.status.toLowerCase().localeCompare(b.status.toLowerCase());
                     });
                     
-                pageView.allMyBooksPage(selector, coveredBooks);
+                pageView.allMyBooksPage(selector, coveredBooks, 'My Books All');
             });
     }
 

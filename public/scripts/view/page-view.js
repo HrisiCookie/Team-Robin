@@ -68,9 +68,9 @@ class PageView {
         return setHtmlWithCompiledData(selector, options, 'search-result-page');
     }
 
-    allMyBooksPage(selector, books){
-        let data = { books };
-        return setHtmlWithCompiledData(selector, data, 'my-books-all');
+    allMyBooksPage(selector, books, myBooksPage){
+        let data = { books, myBooksPage };
+        return setHtmlWithCompiledData(selector, data, 'my-books');
     }
 
 }
