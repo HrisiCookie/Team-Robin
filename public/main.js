@@ -17,7 +17,7 @@ let $page = $('#page');
     let sammyApp = Sammy('#content', function () {
 
         this.get('#/', function () {
-            // this.redirect('#/home');
+            this.redirect('#/home');
         });
 
         this.get('#/home', (context) => {
@@ -56,7 +56,6 @@ let $page = $('#page');
         });
 
         this.get('#/profile', (context) => {
-            $('#search').hide();
             $('footer').hide();
             usersController.profile(context, '#content');
         });
@@ -69,7 +68,6 @@ let $page = $('#page');
 
         this.get('#/add-book', (context) => {
             if ($('#page').hasClass('logged-in')) {
-                $('#search').hide();
                 $('footer').hide();
                 booksController.addBook(context, '#content');
             } else {
@@ -87,6 +85,7 @@ let $page = $('#page');
 
         this.get('#/mybooks/:myBooksType', (context) => {
             $('#search').show();
+            $('footer').hide();
             booksController.myBooks(context, '#content');
         });
     });

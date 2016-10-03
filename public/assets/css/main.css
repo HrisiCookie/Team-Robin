@@ -376,3 +376,7 @@ ul {
     font-size: 18px;
     padding: 8px;
 }
+
+.disapear {
+    visibility: hidden
+}
