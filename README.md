@@ -24,6 +24,5 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 *Season 2016/2017*
 
 ![picture 1] (http://best.telerikacademy.com/Images/562/bc39c1562_high.jpg)
-![picture 2] (http://best.telerikacademy.com/Images/563/671371563_high.jpg)
-![picture 3] (http://best.telerikacademy.com/Images/564/d86831564_high.jpg)
-![picture 4] (http://best.telerikacademy.com/Images/564/d86831564_high.jpg)
+![picture 2] (http://best.telerikacademy.com/Images/564/d86831564_high.jpg)
+![picture 3] (http://best.telerikacademy.com/Images/563/671371563_high.jpg)
