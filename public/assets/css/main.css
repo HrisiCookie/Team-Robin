@@ -145,7 +145,7 @@ ul {
     }
 }
 
-.star{
+.star, .review-rating-adder .star{
     color: #edd20b;
 }
 
@@ -290,6 +290,10 @@ ul {
 
 .genre {
     display: block
+}
+
+#book-wrapper .row .col-md-5 p {
+    font-size: 16px;
 }
 
 #book-wrapper p {
