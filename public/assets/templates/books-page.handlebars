@@ -10,7 +10,7 @@
                 </div>
             </div>
             
-            <div id="collapse{{_id}}" class="collapse width"> 
+            <div id="collapse{{_id}}" class="collapse width col-md-3"> 
                 <h2>Title: <a href="#/books/{{_id}}"> {{{title}}}</a></h2>
                 <h3>Author: <a href="#/books-result?author={{author}}">{{{author}}}</a></h3>
                 <h3>Rating: 
@@ -23,10 +23,10 @@
                     {{/if}}
                 </h3>
                 <h3>Pages: {{pages}}</h3>
-                <h3>Genres:</h3>
+                <!--<h3>Genres:</h3>
                 {{#genres}}
                 <a href="#/books-result?genre={{this}}" class="btn btn-default">{{this}}</a>
-                {{/genres}}
+                {{/genres}}-->
             </div>
         <!--</div>-->
         {{/books}}
