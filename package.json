@@ -4,7 +4,8 @@
   "description": "##  Login form * Register users * Login users * Log out users * Each user has:   * Username, Password",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
