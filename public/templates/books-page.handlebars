@@ -12,9 +12,9 @@
                 </div>
                 
                 <div  class="width col-md-6"> 
-                    <h2>Title: <a href="#/books/{{_id}}"> {{{title}}}</a></h2>
-                    <h3>Author: <a href="#/books-result?author={{author}}">{{{author}}}</a></h3>
-                    <h3>Rating: 
+                    <a href="#/books/{{_id}}"><h3> {{{title}}}</h3></a>
+                    <h4>Author: <a href="#/books-result?author={{author}}">{{{author}}}</a></h4>
+                    <h4>Rating: 
                         {{#if rating}}
                         {{#each rating}}
                             <span class="star glyphicon glyphicon-star"></span>
@@ -22,8 +22,8 @@
                         {{else}}
                             No rating
                         {{/if}}
-                    </h3>
-                    <h3>Pages: {{pages}}</h3>
+                    </h4>
+                    <h4>Pages: {{pages}}</h4>
                     <!--<h3>Genres:</h3>
                     {{#genres}}
                     <a href="#/books-result?genre={{this}}" class="btn btn-default">{{this}}</a>
