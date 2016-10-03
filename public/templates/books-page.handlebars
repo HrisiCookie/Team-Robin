@@ -2,15 +2,16 @@
 <div class="table-responsive">
     <div class="table">
         {{#books}}
-        <!--<div class="row">-->
-            <div class="col-md-3">
+        <div class="col-md-6">
+            <div class="row">
+            <div class="col-md-6">
                 <img class="img-responsive img-thumbnail col-md-3 offset-1" src="{{coverUrl}}">
                 <div id="view-more">
                     <a class="btn btn-success btn-md" href="#collapse{{_id}}" data-toggle="collapse">View more</a>
                 </div>
             </div>
             
-            <div id="collapse{{_id}}" class="collapse width col-md-3"> 
+            <div id="collapse{{_id}}" class="collapse width col-md-6"> 
                 <h2>Title: <a href="#/books/{{_id}}"> {{{title}}}</a></h2>
                 <h3>Author: <a href="#/books-result?author={{author}}">{{{author}}}</a></h3>
                 <h3>Rating: 
@@ -28,7 +29,8 @@
                 <a href="#/books-result?genre={{this}}" class="btn btn-default">{{this}}</a>
                 {{/genres}}-->
             </div>
-        <!--</div>-->
+            </div>
+        </div>
         {{/books}}
     </div>  
 </div>
