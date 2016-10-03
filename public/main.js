@@ -85,7 +85,8 @@ let $page = $('#page');
             booksController.singleBook(context, '#content');
         });
 
-        this.get('#/mybooks/:myBooksType', (context)=>{
+        this.get('#/mybooks/:myBooksType', (context) => {
+            $('#search').show();
             booksController.myBooks(context, '#content');
         });
     });
@@ -98,8 +99,7 @@ let $page = $('#page');
         .then((isLoggedIn) => {
             if (isLoggedIn) {
                 $('#page').addClass('logged-in');
-            }
-            else {
+            } else {
                 $('#page').removeClass('logged-in');
             }
         })
