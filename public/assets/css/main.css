@@ -237,7 +237,7 @@ ul {
     font-family: "Architects Daughter";
 }
 
-.register-form .form-group span, .log-in-form .form-group span {
+.register-form .form-group span, .log-in-form .form-group span, .form-group span {
     color: #d3040e;
 }
 
@@ -264,8 +264,10 @@ ul {
 
 .cat {
     margin-top: 90px;
-    margin-left: 100px;
+    margin-left: 150px;
     text-align: center;
+    width: 330px;
+    height: 400px;
 }
 
 .form-group label {
@@ -323,3 +325,54 @@ ul {
     margin-top: 80px;
 }
 
+.new-wrapper h3 {
+    font-family: "Architects Daughter";
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+.new-wrapper {
+    font-family: "Architects Daughter";
+    font-size: 18px;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.new-wrapper h4 {
+    margin-bottom: 30px;
+}
+
+.new-wrapper p {
+    margin-bottom: 0px;
+}
+
+.new-wrapper .col-md-9 {
+    font-family: "Architects Daughter";
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.preview {
+    margin-top: 50px;
+}
+
+.preview h4 {
+    font-family: "Architects Daughter";
+    font-size: 26px;
+}
+
+.table-responsive p {
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.table .row {
+    margin-bottom: 30px;
+}
+
+.table-responsive button {
+    margin-top: 50px;
+    font-family: "Architects Daughter";
+    font-size: 18px;
+    padding: 8px;
+}

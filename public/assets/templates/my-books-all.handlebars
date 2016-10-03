@@ -1,23 +1,33 @@
 <h1>{{myBooksPage}}</h1>
 <div class="table-responsive">
-    <table class="table">
+    <div class="table">
         {{#books}}
-        <tr class="row">
-            <td class="col-md-3">
+        <div class="row">
+            <div class="col-md-3">
                 <img class="img-responsive" src="{{coverUrl}}">
-            </td>
-            <td> 
-                <h2>Title: <a href="#/books/{{_id}}"> {{{title}}}</a></h2>
-                <h3>Author: <a href="#/books-result?author={{author}}">{{{author}}}</a></h3>
+            </div>
+            <div> 
+            <div class="col-md-6">
+                <h3>Title: <a href="#/books/{{_id}}"> {{{title}}}</a></h2>
+                <p>Author: <a href="#/books-result?author={{author}}">{{{author}}}</a></p>
                
-                <h3>Pages: {{pages}}</h3>
-                <h3>Genres:</h3>
-                <h3>Status: {{status}}</h3>
+                <p>Pages: {{pages}}</p>
+                
+                <p>Status: {{status}}</p>
+                <div>
+                    <button data-status="want-to-read" class="btn btn-success btn-change-status {{#if isToRead}}hidden{{/if}}">Want to Read</button>
+                    <button data-status="currently-reading" class="btn btn-success btn-change-status {{#if isReading}}hidden{{/if}}">Currently reading</button>
+                    <button data-status="read" class="btn btn-success btn-change-status {{#if isRead}}hidden{{/if}}">Already read</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <p>Genres:</p>
                 {{#genres}}
-                <a class="btn btn-default" href="#/books-result?genre={{this}}">{{this}}</a>
+                <a class="" href="#/books-result?genre={{this}}">{{this}}  </a>
                 {{/genres}}
-            </td>
-        </tr>
+            </div>
+            </div>
+        </div>
         {{/books}}
-    </table>  
+    </div>  
 </div>
